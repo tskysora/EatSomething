@@ -27,6 +27,8 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 
+import "@fortawesome/fontawesome-free/css/all.css";
+
 import { createApp } from 'vue/dist/vue.esm-bundler.js';
 import ButtonCounter from '../frontend/components/ButtonCounter.vue'
 
