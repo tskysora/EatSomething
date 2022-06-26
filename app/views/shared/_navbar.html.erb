@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <i class="fa-solid fa-utensils me-1"></i>
+      吃些什麼
+    </a>
+
+    <!-- Sidebar -->
+    <div class="d-block d-md-none">
+      <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <a class="fs-5 text-black text-decoration-none" href="#">
+            <i class="fa-solid fa-utensils me-1"></i>
+              吃些什麼
+          </a>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <a class="nav-link ps-4" href="#">首頁</a>
+          <a class="nav-link ps-4" href="#">跟團</a>
+          <div id="sidebar-mobile-collapse-btn" class="nav-link ps-1 cursor-pointer">
+            <i class="fa-solid fa-chevron-right me-1" id="sidebar-mobile-icon"></i>
+            <span>管理者</span>
+          </div>
+          <div id="sidebar-mobile-collapse" class="collapse ms-2">
+            <a class="nav-link" href="#">店家管理</a>
+            <a class="nav-link" href="#">餐點管理</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Extend Navbar -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">首頁</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">跟團</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            管理者
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">店家管理</a></li>
+            <li><a class="dropdown-item" href="#">餐點管理</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <button class="btn btn-outline-success me-1" type="submit">註冊</button>
+        <button class="btn btn-outline-light" type="submit">登入</button>
+      </form>
+    </div>
+  </div>
+</nav>

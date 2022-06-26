@@ -2,8 +2,27 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import * as bootstrap from "bootstrap"
+import Collapse from 'bootstrap/js/dist/collapse'
 
-let popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-let popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-  return new bootstrap.Popover(popoverTriggerEl)
-})  
+function collapseMobileHandler() {
+  const collapseMobile = document.getElementById("sidebar-mobile-collapse");
+  const collapseBtnMobile = document.getElementById("sidebar-mobile-collapse-btn");
+  const sidebarIconMobile = document.getElementById("sidebar-mobile-icon");
+
+  // 初始化下拉選單
+  const bsCollapseMobile = new Collapse(collapseMobile, {
+    toggle: false
+  });
+
+  collapseBtnMobile.addEventListener("click", function () {
+    bsCollapseMobile.toggle();
+  });
+  collapseMobile.addEventListener("show.bs.collapse", function () {
+    sidebarIconMobile.classList.add("transform-rotate-90");
+  });
+  collapseMobile.addEventListener("hide.bs.collapse", function () {
+    sidebarIconMobile.classList.remove("transform-rotate-90");
+  });
+}
+
+collapseMobileHandler();

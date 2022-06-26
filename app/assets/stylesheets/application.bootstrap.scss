@@ -1,5 +1,50 @@
 // @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
-$h1-font-size: 1rem; // this line was added  
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import 'bootstrap/scss/functions';
+
+// 2. Include any default variable overrides here
+$primary: #87787B;
+$secondary: #ADADAD;
+$success: #E8CCD1;
+$info: #CBE8F5;
+
+// 3. Include remainder of required Bootstrap stylesheets
+@import 'bootstrap/scss/variables';
+
+// 4. Include any default map overrides here
+// $link-color: #fff;
+// $link-decoration: none;
+
+$font-sizes: map-merge($font-sizes,
+    (
+      7: $font-size-base * 0.8,
+      8: $font-size-base * 0.6,
+    ));
+
+
+// 6. Optionally include any other parts as needed
+@import 'bootstrap/scss/utilities';
+
+$utilities: map-merge($utilities,
+    ("cursor": (responsive: true,
+        property: cursor,
+        class: cursor,
+        values: pointer,
+      ),
+      "transform": (responsive: true,
+        property: transform,
+        values: (rotate-90: rotate(90deg),
+        ),
+      ),
+      "transition": (responsive: true,
+        property: transition,
+        values: (transform: transform 0.5s,
+        ),
+      ),
+    )
+);
+
+// $h1-font-size: 1rem; // this line was added  
 @import 'bootstrap/scss/bootstrap';
