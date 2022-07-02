@@ -24,7 +24,10 @@
 
   <body>
     <%= render 'shared/navbar' %>
-    <div class="container-md">
+    <div class="container-md py-3">
+      <!-- <%= render 'shared/flash' %> -->
+      <%= render 'shared/flash' if notice %>
+      <%= render 'shared/flash' if alert %>
       <%= yield %>
       <%= render 'shared/footer' %>
     </div>

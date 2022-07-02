@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">
-      <i class="fa-solid fa-utensils me-1"></i>
-      吃些什麼
-    </a>
+    <%= link_to(root_path, class: 'navbar-brand') do %>
+      <i class="fa-solid fa-utensils me-2"></i>吃些什麼
+    <% end %>
 
     <!-- Sidebar -->
     <div class="d-block d-md-none">
@@ -13,14 +12,13 @@
       
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <a class="fs-5 text-black text-decoration-none" href="#">
-            <i class="fa-solid fa-utensils me-1"></i>
-              吃些什麼
-          </a>
+          <%= link_to(root_path, class: 'fs-5 text-black text-decoration-none') do %>
+            <i class="fa-solid fa-utensils me-2"></i>吃些什麼
+          <% end %>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
-          <a class="nav-link ps-4" href="#">首頁</a>
+          <%= link_to "首頁", root_path, class: 'nav-link ps-4' %>
           <a class="nav-link ps-4" href="#">跟團</a>
           <div id="sidebar-mobile-collapse-btn" class="nav-link ps-1 cursor-pointer">
             <i class="fa-solid fa-chevron-right me-1" id="sidebar-mobile-icon"></i>
@@ -31,14 +29,37 @@
             <a class="nav-link" href="#">餐點管理</a>
           </div>
         </div>
+        <div class="offcanvas-footer">
+          <!-- <hr> -->
+          <% if user_signed_in? %>
+            <div class="btn-group dropup py-2 w-100 border-top">
+              <button type="button" class="btn dropdown-toggle shadow-none text-start" data-bs-toggle="dropdown" aria-expanded="false">
+                <%= current_user.email %>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <%= link_to "個人資料", edit_user_registration_path, class: 'dropdown-item' %>
+                </li>
+                <li><hr class="dropdown-divider"></li>
+                <%= link_to "登出", destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %>
+              </ul>
+            </div>
+          <% else %>
+            <div class="d-flex justify-content-evenly align-items-center border-top">
+                <%= link_to "註冊", new_user_registration_path, class: 'btn my-2 w-50 border-end' %>
+                <%= link_to "登入", new_user_session_path, class: 'btn my-2 w-50' %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
+
     
     <!-- Extend Navbar -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">首頁</a>
+          <%= link_to "首頁", root_path, class: 'nav-link active' %>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">跟團</a>
@@ -59,8 +80,25 @@
         </li>
       </ul>
       <form class="d-flex">
-        <button class="btn btn-outline-success me-1" type="submit">註冊</button>
-        <button class="btn btn-outline-light" type="submit">登入</button>
+        <% if user_signed_in? %>
+          <div class="dropdown">
+            <button class="btn btn-light dropdown-toggle" type="button" id="dropdownUserButton" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.email %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownUserButton">
+              <li>
+                <%= link_to "個人資料", edit_user_registration_path, class: 'btn btn-outline-info dropdown-item me-1' %>
+              </li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <%= link_to "登出", destroy_user_session_path, data: { turbo_method: :delete }, class: 'dropdown-item' %>
+            </ul>
+          </div>
+        <% else %>
+          <%= link_to "註冊", new_user_registration_path, class: 'btn btn-outline-success me-1' %>
+          <%= link_to "登入", new_user_session_path, class: 'btn btn-outline-light me-1' %>
+        <% end %>
       </form>
     </div>
   </div>
