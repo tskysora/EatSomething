@@ -1,1 +1,40 @@
-<h1>123</h1>
+<h2>我的店家清單</h2>
+
+<%= link_to "新增店家", new_store_path, class: 'btn btn-success' %>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>店家編輯</th>
+      <th>店名</th>
+      <th>分店</th>
+      <th>地址</th>
+      <th>電話</th>
+      <th>餐點編輯</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @stores.each do |store| %>
+    <tr>
+      <td>
+        <%= link_to '編輯', edit_store_path(store), class: 'btn btn-outline-primary' %>
+      </td>
+      <td class="pt-3">
+        <%= store.name %>
+      </td>
+      <td class="pt-3">
+        <%= store.branch %>
+      </td>
+      <td class="pt-3">
+        <%= store.city + store.district + store.street_address %>
+      </td>
+      <td class="pt-3">
+        <%= store.tel %>
+      </td>
+      <td>
+        <a href="#" class="btn btn-primary text-light">編輯</a>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
