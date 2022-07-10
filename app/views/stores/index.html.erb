@@ -2,7 +2,7 @@
 
 <%= link_to "新增店家", new_store_path, class: 'btn btn-success' %>
 
-<table class="table table-hover">
+<!-- <table class="table table-hover">
   <thead>
     <tr>
       <th>店家編輯</th>
@@ -20,7 +20,7 @@
         <%= link_to '編輯', edit_store_path(store), class: 'btn btn-outline-primary' %>
       </td>
       <td class="pt-3">
-        <%= store.name %>
+        <%= link_to store.name, store_path(store) %>
       </td>
       <td class="pt-3">
         <%= store.branch %>
@@ -37,4 +37,6 @@
     </tr>
     <% end %>
   </tbody>
-</table>
+</table> -->
+
+<%= render 'store_list', stores: @stores %>

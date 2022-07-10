@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-header d-flex">
+    <div class="">
+      <span class="fs-4">
+        <!-- <%= store.name %> -->
+        餐點
+      </span> 
+    </div>
+    <div class="ms-auto">
+      <%= link_to "編輯餐點", edit_store_meal_path ,class: 'btn btn-primary text-light' %>
+      <%= link_to "新增餐點", new_store_meal_path ,class: 'btn btn-primary text-light' %>
+    </div>
+  </div>
+  <div class="card-body">
+    <!-- <h5 class="card-title">Special title treatment</h5> -->
+    <p class="card-text">
+      地址：<%= store.city + store.district + store.street_address %>
+    </p>
+    <p>
+      電話：<%= store.tel %>
+    </p>
+    <p>
+      備註：<%= store.note %>
+    </p>
+  </div>
+</div>

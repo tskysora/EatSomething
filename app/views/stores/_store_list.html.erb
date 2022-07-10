@@ -1,0 +1,40 @@
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+  <% @stores.each do |store| %>
+    <div class="col">
+      <div class="card my-2">
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+          <div class="d-flex">
+            <h5 class="card-title mb-0">
+              <%= store.name %>
+              <span class="fs-6">
+                <%= store.branch %>
+              </span>
+            </h5>
+          </div>
+          <div class="card-text mt-2">
+            <div>
+              電話：<%= store.tel %>
+            </div>
+            <div>
+              地址：<%= store.city + store.district + store.street_address %>
+            </div>
+            <div>
+              備註：<%= store.note %>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">An item</li>
+          <li class="list-group-item">A second item</li>
+          <li class="list-group-item">A third item</li>
+        </ul>
+        <div class="card-body">
+          <%= link_to "查看", store_path(store) %>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+

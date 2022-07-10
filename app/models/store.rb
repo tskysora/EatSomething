@@ -1,6 +1,5 @@
 class Store < ApplicationRecord
-  validates :name, presence: true
-  validates :city, presence: true
-  validates :district, presence: true
-  validates :tel, presence: true
+  belongs_to :user
+
+  validates :name, :city, :district, :tel, presence: true
 end

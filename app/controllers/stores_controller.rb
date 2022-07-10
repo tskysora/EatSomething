@@ -1,22 +1,27 @@
 class StoresController < ApplicationController
-  before_action :find_store, only: [:edit, :update]
+  before_action :authenticate_user!
+  before_action :find_store, only: [:edit, :update, :show]
 
   def index
-    @stores = Store.all
+    @stores = current_user.stores.order(created_at: :desc)
   end
 
   def new
-    @store = Store.new
+    @store = current_user.stores.new
   end
 
   def create
-    @store = Store.new(store_params)
+    @store = current_user.stores.new(store_params)
 
     if @store.save
       redirect_to stores_path, notice: '新增店家成功！'
     else
       render :new
     end
+  end
+
+  def show
+    
   end
 
   def edit
@@ -34,7 +39,7 @@ class StoresController < ApplicationController
   private
 
   def find_store
-    @store = Store.find(params[:id])  
+    @store = current_user.stores.find(params[:id])  
   end
 
   def store_params

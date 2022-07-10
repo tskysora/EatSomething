@@ -1,5 +1,8 @@
 zh-TW:
   activerecord:
+    models:
+      store: 店家
+      meal: 餐點
     attributes:
       user:
         nickname: "暱稱"

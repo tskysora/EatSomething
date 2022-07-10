@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_02_092822) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_143653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "meals", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.string "description"
+    t.bigint "store_id", null: false
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_meals_on_deleted_at"
+    t.index ["store_id"], name: "index_meals_on_store_id"
+  end
 
   create_table "stores", force: :cascade do |t|
     t.string "name"
@@ -27,11 +39,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_092822) do
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["branch"], name: "index_stores_on_branch"
     t.index ["city"], name: "index_stores_on_city"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
     t.index ["name"], name: "index_stores_on_name"
     t.index ["online"], name: "index_stores_on_online"
+    t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,4 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_02_092822) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "meals", "stores"
+  add_foreign_key "stores", "users"
 end
