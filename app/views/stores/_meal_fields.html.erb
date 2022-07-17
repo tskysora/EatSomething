@@ -1,0 +1,25 @@
+<!-- <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+    </li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+  </ul> -->
+  
+<div class="row">
+  <div class="col-4 my-3">
+    <%= form.label :name, '餐點名稱', class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
+  </div>
+  <div class="col-2 my-3">
+    <%= form.label :price, '價格', class: 'form-label' %>
+    <%= form.number_field :price, class: 'form-control' %>
+  </div>
+  <div class="col-5 my-3">
+    <%= form.label :description, '描述', class: 'form-label' %>
+    <%= form.text_field :description, class: 'form-control' %>
+  </div>
+  <div class="col-1 my-3">
+    X
+  </div>
+</div>
+
