@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_store, only: [:edit, :update]
+  before_action :find_store, only: [:edit, :update, :destroy]
 
   def index
     @stores = current_user.stores.includes(:meals).order(created_at: :desc)
@@ -31,6 +31,11 @@ class StoresController < ApplicationController
     else
       render :edit
     end
+  end
+  
+  def destroy
+    @store.destroy
+    redirect_to stores_path, notice: '店家已刪除！'
   end
 
   private

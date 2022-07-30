@@ -51,6 +51,7 @@ gem "bootsnap", require: false
 gem 'vite_rails', '~> 3.0', '>= 3.0.10'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'rails-i18n', '~> 7.0', '>= 7.0.3'
+gem 'paranoia', '~> 2.6'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
