@@ -18,7 +18,7 @@
     "build:css": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules"
   },
   "devDependencies": {
-    "vite": "^2.9.1",
-    "vite-plugin-ruby": "^3.0.9"
+    "vite": "^3.0.0",
+    "vite-plugin-ruby": "^3.1.0"
   }
 }

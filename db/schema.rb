@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_07_143653) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_30_082333) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
 
   create_table "meals", force: :cascade do |t|
     t.string "name"
@@ -40,11 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_07_143653) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.string "slug"
     t.index ["branch"], name: "index_stores_on_branch"
     t.index ["city"], name: "index_stores_on_city"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
     t.index ["name"], name: "index_stores_on_name"
     t.index ["online"], name: "index_stores_on_online"
+    t.index ["slug"], name: "index_stores_on_slug", unique: true
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 

@@ -41,7 +41,7 @@ class StoresController < ApplicationController
   private
 
   def find_store
-    @store = current_user.stores.find(params[:id])  
+    @store = current_user.stores.friendly.find(params[:id])  
   end
 
   def store_params
