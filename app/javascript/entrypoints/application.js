@@ -3,7 +3,7 @@
 //
 //    <%= vite_client_tag %>
 //    <%= vite_javascript_tag 'application' %>
-console.log('Vite ⚡️ Rails')
+// console.log('Vite ⚡️ Rails')
 
 // If using a TypeScript entrypoint file:
 //     <%= vite_typescript_tag 'application' %>
@@ -11,7 +11,7 @@ console.log('Vite ⚡️ Rails')
 // If you want to use .jsx or .tsx, add the extension:
 //     <%= vite_javascript_tag 'application.jsx' %>
 
-console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
+// console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify.app/guide/rails')
 
 // Example: Load Rails libraries in Vite.
 //
@@ -28,20 +28,21 @@ console.log('Visit the guide for more information: ', 'https://vite-ruby.netlify
 // import '~/index.css'
 
 import "@fortawesome/fontawesome-free/css/all.css";
+// 解開以下內容即可使用Vue.js
 
-import { createApp } from 'vue/dist/vue.esm-bundler.js';
-import ButtonCounter from '../frontend/components/ButtonCounter.vue'
+// import { createApp } from 'vue/dist/vue.esm-bundler.js';
+// import ButtonCounter from '../frontend/components/ButtonCounter.vue'
 
-const app = createApp({
-  data() {
-    return {
-      course: 'Intro to Vue 3 and Rails'
-    }
-  }
-})
+// const app = createApp({
+//   data() {
+//     return {
+//       course: 'Intro to Vue 3 and Rails'
+//     }
+//   }
+// })
 
-app.component('ButtonCounter', ButtonCounter)
+// app.component('ButtonCounter', ButtonCounter)
 
-app.mount('#app');
-// (optional) for debug purpose  
-console.log("app", app);  
+// app.mount('#app');
+// // (optional) for debug purpose  
+// console.log("app", app);  

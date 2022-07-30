@@ -3,9 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :stores do
-    resources :meals
-  end
+  resources :stores, except: [:show]
 
   # Defines the root path route ("/")
   root "home#index"

@@ -1,9 +1,9 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_store, only: [:edit, :update, :show]
+  before_action :find_store, only: [:edit, :update]
 
   def index
-    @stores = current_user.stores.order(created_at: :desc)
+    @stores = current_user.stores.includes(:meals).order(created_at: :desc)
   end
   
   def new
@@ -19,10 +19,6 @@ class StoresController < ApplicationController
     else
       render :new
     end
-  end
-  
-  def show
-    
   end
   
   def edit

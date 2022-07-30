@@ -1,25 +1,17 @@
-<!-- <ul class="list-group list-group-flush">
-    <li class="list-group-item">
-    </li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-  </ul> -->
-  
-<div class="row">
+<div class="row nested-fields" data-new-record="<%= form.object.new_record? %>">
   <div class="col-4 my-3">
-    <%= form.label :name, '餐點名稱', class: 'form-label' %>
-    <%= form.text_field :name, class: 'form-control' %>
+    <%= form.text_field :name, class: 'form-control', placeholder: '餐點名稱' %>
   </div>
   <div class="col-2 my-3">
-    <%= form.label :price, '價格', class: 'form-label' %>
-    <%= form.number_field :price, class: 'form-control' %>
+    <%= form.number_field :price, class: 'form-control', placeholder: '價格' %>
   </div>
   <div class="col-5 my-3">
-    <%= form.label :description, '描述', class: 'form-label' %>
-    <%= form.text_field :description, class: 'form-control' %>
+    <%= form.text_field :description, class: 'form-control', placeholder: '描述' %>
   </div>
-  <div class="col-1 my-3">
-    X
+  <div class="col-1 my-3 align-items-center d-flex">
+    <%= link_to '#', data: {action: 'meal-fields#remove_meal'} do %>
+      <i class="bi bi-trash fs-5"></i>
+    <% end %>
   </div>
+  <%= form.hidden_field :_destroy %>
 </div>
-

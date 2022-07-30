@@ -25,13 +25,17 @@
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item">An item</li>
-          <li class="list-group-item">A second item</li>
-          <li class="list-group-item">A third item</li>
+          <% store.meals.each.with_index do |meal, index| %>
+            <% if index < 3 %>
+              <li class="list-group-item d-flex justify-content-between">
+                <span><%= meal.name %></span>
+                <span>$<%= meal.price %></span>
+              </li>
+            <% end %>
+          <% end %>
         </ul>
         <div class="card-body">
-          <%= link_to "查看", edit_store_path(store) %>
-          <a href="#" class="card-link">Another link</a>
+          <%= link_to "查看與編輯", edit_store_path(store) %>
         </div>
       </div>
     </div>

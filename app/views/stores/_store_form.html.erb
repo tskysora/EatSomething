@@ -1,7 +1,12 @@
 <%= form_with model: store, data: "turbo: false" do |form| %>
-  <div class="card">
-    <div class="card-header">
-      <span class="fs-3">編輯店家</span>
+  <div class="card d-none" data-display-target="storeEdit">
+    <div class="card-header d-flex">
+      <div>
+        <span class="fs-3">編輯店家</span>
+      </div>
+      <div class="ms-auto">
+        <%= link_to "取消編輯", '#', class: 'btn btn-primary text-light', data: {action: 'display#show_store_card'} %>
+      </div>
     </div>
     <div class="row card-body">
       <div class="col-3 my-3">
@@ -47,20 +52,35 @@
     </div>
   </div>
   
-  <div class="card mt-4">
-    <div class="card-header">
-      <span class="fs-3">編輯餐點</span>
+  <div class="card mt-4 d-none" data-display-target="mealEdit">
+    <div class="card-header d-flex">
+      <div>
+        <span class="fs-3">編輯餐點</span>
+      </div>
+      <div class="ms-auto">
+        <%= link_to "取消編輯", '#', class: 'btn btn-primary text-light', data: {action: 'display#show_meal_card'} %>
+      </div>
     </div>
-    <div class="card-body">
-      <%= form.fields_for :meals do |meals_form| %>
-        <%= render 'meal_fields', form: meals_form %>
+    <div class="card-body" data-controller="meal-fields">
+
+      <template data-meal-fields-target="template">
+        <%= form.fields_for :meals, Meal.new, child_index: 'NEW_RECORD' do |meal| %>
+          <%= render 'meal_fields', form: meal %>
+        <% end %>
+      </template>
+
+      <%= form.fields_for :meals do |meal_form| %>
+        <%= render 'meal_fields', form: meal_form %>
       <% end %>
+      <div data-meal-fields-target="addBtn">
+        <%= link_to "新增餐點", '#', class: 'btn btn-success', data: {action: 'meal-fields#add_meal'} %>
+      </div>
     </div>
   </div>
     
     
-  <div class="my-3">
-    <%= form.submit class: 'btn btn-primary text-light' %>
+  <div class="my-3 d-none" data-display-target="submit">
+    <%= form.submit "更新", class: 'btn btn-primary text-light' %>
   </div>
 <% end %>
 

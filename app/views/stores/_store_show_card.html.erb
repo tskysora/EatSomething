@@ -1,4 +1,4 @@
-<div class="card mb-3">
+<div class="card mb-3" data-display-target="storeCard">
   <div class="card-header d-flex">
     <div class="">
       <span class="fs-4">
@@ -12,11 +12,10 @@
       </span> 
     </div>
     <div class="ms-auto">
-      <%= link_to "編輯", edit_store_path ,class: 'btn btn-primary text-light' %>
+      <%= link_to "編輯", '#' ,class: 'btn btn-primary text-light', data: {action: 'display#show_store_edit'} %>
     </div>
   </div>
   <div class="card-body">
-    <!-- <h5 class="card-title">Special title treatment</h5> -->
     <p class="card-text">
       地址：<%= store.city + store.district + store.street_address %>
     </p>
