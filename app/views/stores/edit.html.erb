@@ -2,6 +2,28 @@
   <%= render 'store_show_card', store: @store %>
   <%= render 'meal_show_card', store: @store %>
   <%= render 'store_form', store: @store %>
+  
+  <% if @store.menu.attached? %>
+    <div class="card mb-3" data-display-target="mealCard">
+      <div class="card-header d-flex">
+        <div>
+          <span class="fs-4">
+            <%= @store.name %>
+          </span> 
+          <span>的菜單圖片</span>
+        </div>
+        <div class="ms-auto">
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <%= image_tag @store.menu.variant(resize: '800x800') if @store.menu.attached? %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
 </div>
   
+
 

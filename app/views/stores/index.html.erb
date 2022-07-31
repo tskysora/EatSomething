@@ -1,5 +1,22 @@
 <h2>我的店家清單</h2>
 
-<%= link_to "新增店家", new_store_path, class: 'btn btn-success' %>
+<%= link_to "新增店家", new_store_path, class: 'btn btn-success mb-2' %>
 
-<%= render 'store_list', stores: @stores %>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="online-tab" data-bs-toggle="tab" data-bs-target="#online" type="button" role="tab" aria-controls="online" aria-selected="true">營業中</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="offline-tab" data-bs-toggle="tab" data-bs-target="#offline" type="button" role="tab" aria-controls="offline" aria-selected="false">停業中</button>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="online" role="tabpanel" aria-labelledby="online-tab" tabindex="0">
+    <%= render 'store_list', stores: @stores.available %>
+  </div>
+  <div class="tab-pane" id="offline" role="tabpanel" aria-labelledby="offline-tab" tabindex="0">
+    <%= render 'store_list', stores: @stores.disable %>
+  </div>
+</div>

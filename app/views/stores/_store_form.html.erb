@@ -1,5 +1,6 @@
 <%= form_with model: store, data: "turbo: false" do |form| %>
   <div class="card d-none" data-display-target="storeEdit">
+  <!-- <div class="card" data-display-target="storeEdit"> -->
     <div class="card-header d-flex">
       <div>
         <span class="fs-3">編輯店家</span>
@@ -37,10 +38,17 @@
         <%= form.label :note, '備註', class: 'form-label' %>
         <%= form.text_area :note, class: 'form-control', rows: 3 %>
       </div>
-      <div class="col-12 my-3">
+      <div class="col-3 my-3">
         <%= form.check_box :online, class: 'form-check-input' %>
         <%= form.label :online, '營業中', class: 'form-check-label' %>
       </div>
+      <div class="col-1 my-3 px-0 text-end">
+        <%= form.label :label, '上傳菜單', class: 'form-label' %>
+      </div>
+      <div class="col-8 my-2">
+        <%= form.file_field :menu, class: 'form-control' %>
+      </div>
+      
       <!-- <div>
         <%= form.label :opening, '營業時間', class: 'form-label' %>
       </div>

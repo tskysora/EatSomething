@@ -45,7 +45,7 @@ class StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :branch, :city, :district, :street_address, :tel, :note, :online,
+    params.require(:store).permit(:name, :branch, :city, :district, :street_address, :tel, :note, :online, :menu,
                                   meals_attributes: [ :id, :name, :price, :description, :_destroy]
                                   )
   end
