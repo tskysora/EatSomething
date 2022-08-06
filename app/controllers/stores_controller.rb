@@ -3,7 +3,8 @@ class StoresController < ApplicationController
   before_action :find_store, only: [:edit, :update, :destroy]
 
   def index
-    @stores = current_user.stores.includes(:meals).order(created_at: :desc)
+    # @stores = current_user.stores.includes(:meals).order(created_at: :desc)
+    @pagy, @stores = pagy(current_user.stores.includes(:meals).order(created_at: :desc))
   end
   
   def new
