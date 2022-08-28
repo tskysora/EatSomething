@@ -27,7 +27,7 @@
 // Example: Import a stylesheet in app/frontend/index.css
 // import '~/index.css'
 
-import "@fortawesome/fontawesome-free/css/all.css";
+
 // 解開以下內容即可使用Vue.js
 
 // import { createApp } from 'vue/dist/vue.esm-bundler.js';

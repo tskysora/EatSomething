@@ -13,38 +13,41 @@
   <div class="card-body">
     <div class="px-4 py-2">
       <div class="row p-1 border-bottom border-2 border-primary">
-        <!-- <div class="col-2">
-          功能
-        </div> -->
+        <div class="col-1">
+          
+        </div>
         <div class="col-4">
           餐點名稱
         </div>
         <div class="col-2">
           價格
         </div>
-        <div class="col-6">
+        <div class="col-5">
           描述
         </div>
       </div>
-      <div>
+      <div class="sortable-items">
         <% store.meals.each do |meal| %>
-          <div class="row py-2 border-bottom">
-            <!-- <div class="col-2">
-              X
-            </div> -->
+          <div class="row py-2 border-bottom item" data-item="<%= dom_id(meal) %>">
+            <div class="col-1">
+              <i class="fa-solid fa-grip-vertical"></i>
+            </div>
             <div class="col-4">
               <%= meal.name %>
             </div>
             <div class="col-2">
               <%= meal.price %>
             </div>
-            <div class="col-6">
+            <div class="col-5">
               <%= meal.description %>
             </div>
           </div>
         <% end %>
       </div>
     </div>
+  </div>
+  <div class="card-footer text-muted fw-light">
+    <span>小提示：可使用拖拉調整餐點順序</span>
   </div>
 </div>
 

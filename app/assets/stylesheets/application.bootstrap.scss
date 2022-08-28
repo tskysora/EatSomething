@@ -48,3 +48,13 @@ $utilities: map-merge($utilities,
 
 // $h1-font-size: 1rem; // this line was added  
 @import 'bootstrap/scss/bootstrap';
+
+// custom scss
+.sortable-items {
+  .item {
+    cursor: pointer;
+  }
+}
+.sortable-drag {
+  background-color: #F1F1F1;
+}

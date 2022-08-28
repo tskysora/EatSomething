@@ -14,6 +14,7 @@ class Store < ApplicationRecord
 
   scope :available, -> { where(online: true)}
   scope :disable, -> { where(online: false)}
+  default_scope { order('updated_at DESC') }
   private
   
   def code_generator

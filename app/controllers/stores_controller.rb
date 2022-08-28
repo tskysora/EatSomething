@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_store, only: [:edit, :update, :destroy]
+  before_action :find_store, only: [:edit, :update, :destroy, :sort]
 
   def index
     # @stores = current_user.stores.includes(:meals).order(created_at: :desc)
@@ -28,7 +28,7 @@ class StoresController < ApplicationController
 
   def update
     if @store.update(store_params)
-      redirect_to stores_path, notice: '資料更新成功！'
+      redirect_to edit_store_path, notice: '資料更新成功！'
     else
       render :edit
     end
@@ -39,10 +39,20 @@ class StoresController < ApplicationController
     redirect_to stores_path, notice: '店家已刪除！'
   end
 
+  def sort
+    find_meal
+    @meal.insert_at(params[:to].to_i + 1)
+    render json: {status: 'ok'}
+  end
+  
   private
-
+  
   def find_store
     @store = current_user.stores.friendly.find(params[:id])  
+  end
+  
+  def find_meal
+    @meal = @store.meals.find(params[:meal_id])
   end
 
   def store_params

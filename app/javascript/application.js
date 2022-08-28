@@ -3,8 +3,11 @@ import "@hotwired/turbo-rails"
 // import { Turbo } from "@hotwired/turbo-rails"
 // Turbo.session.drive = false
 import "./controllers"
+import "./controllers/sortable"
 import * as bootstrap from "bootstrap"
 import Collapse from 'bootstrap/js/dist/collapse'
+import "@fortawesome/fontawesome-free/js/all"
+
 
 function collapseMobileHandler() {
   const collapseMobile = document.getElementById("sidebar-mobile-collapse");
