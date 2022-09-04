@@ -12,6 +12,7 @@
     "esbuild": "^0.14.47",
     "sass": "^1.52.3",
     "sortablejs": "^1.15.0",
+    "tw-city-selector": "^2.1.0",
     "vite-plugin-ruby": "^3.1.2"
   },
   "scripts": {

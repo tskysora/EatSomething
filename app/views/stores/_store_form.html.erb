@@ -22,13 +22,27 @@
         <%= form.label :tel, '電話', class: 'form-label' %>
         <%= form.text_field :tel, class: 'form-control' %>
       </div>
-      <div class="col-3 my-3">
-        <%= form.label :city, '縣市', class: 'form-label' %>
-        <%= form.text_field :city, class: 'form-control' %>
+      <!-- <div class="col-3 my-3">
+        <%= form.label :county, '縣市', class: 'form-label' %>
+        <%= form.text_field :county, class: 'form-control' %>
       </div>
       <div class="col-3 my-3">
         <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
         <%= form.text_field :district, class: 'form-control' %>
+      </div> -->
+      <!-- <div class="col-6 my-3">
+        <%= form.label :county, '縣市／鄉鎮市區', class: 'form-label' %>
+        <div role="tw-county-selector" class="my-style-selector"></div>
+      </div> -->
+      <div class="city-selector col-6">
+        <div class="blo col-3 my-3 me-2">
+          <%= form.label :county, '縣市', class: 'form-label' %>
+          <select class="county"></select>
+        </div>
+        <div class="blo col-3 my-3">
+          <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
+          <select class="district" ></select>
+        </div>
       </div>
       <div class="col-6 my-3">
         <%= form.label :street_address, '街道名稱', class: 'form-label' %>

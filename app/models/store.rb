@@ -9,7 +9,7 @@ class Store < ApplicationRecord
   accepts_nested_attributes_for :meals, reject_if: :all_blank, allow_destroy: true
   has_one_attached :menu
 
-  validates :name, :city, :district, :tel, presence: true
+  validates :name, :county, :district, :tel, presence: true
   validates :slug, uniqueness: true
 
   scope :available, -> { where(online: true)}

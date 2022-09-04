@@ -58,3 +58,17 @@ $utilities: map-merge($utilities,
 .sortable-drag {
   background-color: #F1F1F1;
 }
+
+.city-selector {
+
+  .blo {
+    width: 48%;
+    display: inline-block;
+    select {
+       border-radius: 0.2em;
+       border-color: #ced4da;
+       width: 100%;
+       padding: .5em;
+     }
+  }
+}

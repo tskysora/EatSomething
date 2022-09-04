@@ -1,33 +1,17 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-// import { Turbo } from "@hotwired/turbo-rails"
+// import "@hotwired/turbo-rails"
+import { Turbo } from "@hotwired/turbo-rails"
 // Turbo.session.drive = false
 import "./controllers"
 import "./controllers/sortable"
+import "./controllers/bootstrap"
 import * as bootstrap from "bootstrap"
-import Collapse from 'bootstrap/js/dist/collapse'
 import "@fortawesome/fontawesome-free/js/all"
+import TwCitySelector from 'tw-city-selector/dist/tw-city-selector'
 
+var tcs = new TwCitySelector({
+  el: '.city-selector',
+  elCounty: '.county',
+  elDistrict: '.district',
+});
 
-function collapseMobileHandler() {
-  const collapseMobile = document.getElementById("sidebar-mobile-collapse");
-  const collapseBtnMobile = document.getElementById("sidebar-mobile-collapse-btn");
-  const sidebarIconMobile = document.getElementById("sidebar-mobile-icon");
-
-  // 初始化下拉選單
-  const bsCollapseMobile = new Collapse(collapseMobile, {
-    toggle: false
-  });
-
-  collapseBtnMobile.addEventListener("click", function () {
-    bsCollapseMobile.toggle();
-  });
-  collapseMobile.addEventListener("show.bs.collapse", function () {
-    sidebarIconMobile.classList.add("transform-rotate-90");
-  });
-  collapseMobile.addEventListener("hide.bs.collapse", function () {
-    sidebarIconMobile.classList.remove("transform-rotate-90");
-  });
-}
-
-collapseMobileHandler();

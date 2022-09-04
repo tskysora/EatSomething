@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_07_030437) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_03_041932) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,7 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_030437) do
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.string "branch"
-    t.string "city"
+    t.string "county"
     t.string "district"
     t.string "street_address"
     t.string "tel"
@@ -82,7 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_030437) do
     t.bigint "user_id"
     t.string "slug"
     t.index ["branch"], name: "index_stores_on_branch"
-    t.index ["city"], name: "index_stores_on_city"
+    t.index ["county"], name: "index_stores_on_county"
     t.index ["deleted_at"], name: "index_stores_on_deleted_at"
     t.index ["name"], name: "index_stores_on_name"
     t.index ["online"], name: "index_stores_on_online"
