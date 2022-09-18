@@ -62,13 +62,13 @@ $utilities: map-merge($utilities,
 .city-selector {
 
   .blo {
-    width: 48%;
+    width: 47%;
     display: inline-block;
     select {
        border-radius: 0.2em;
        border-color: #ced4da;
        width: 100%;
-       padding: .5em;
+       padding: 0.5em;
      }
   }
 }

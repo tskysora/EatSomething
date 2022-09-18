@@ -3,15 +3,7 @@
 import { Turbo } from "@hotwired/turbo-rails"
 // Turbo.session.drive = false
 import "./controllers"
-import "./controllers/sortable"
-import "./controllers/bootstrap"
+import "./vendor/index.js"
 import * as bootstrap from "bootstrap"
 import "@fortawesome/fontawesome-free/js/all"
-import TwCitySelector from 'tw-city-selector/dist/tw-city-selector'
-
-var tcs = new TwCitySelector({
-  el: '.city-selector',
-  elCounty: '.county',
-  elDistrict: '.district',
-});
 

@@ -6,15 +6,15 @@
       </div>
     </div>
     <div class="row card-body">
-      <div class="col-3 my-3">
+      <div class="col-md-3 col-sm-6 my-3">
         <%= form.label :name, '店名', class: 'form-label' %>
         <%= form.text_field :name, class: 'form-control' %>
       </div>
-      <div class="col-3 my-3">
+      <div class="col-md-3 col-sm-6 my-3">
         <%= form.label :branch, '分店名稱', class: 'form-label' %>
         <%= form.text_field :branch, class: 'form-control' %>
       </div>
-      <div class="col-6 my-3">
+      <div class="col-md-6 col-sm-12 my-3">
         <%= form.label :tel, '電話', class: 'form-label' %>
         <%= form.text_field :tel, class: 'form-control' %>
       </div>
@@ -26,17 +26,17 @@
         <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
         <%= form.text_field :district, class: 'form-control' %>
       </div> -->
-      <div class="city-selector col-6">
-        <div class="blo col-3 my-3 me-2">
+      <div class="city-selector col-md-6 col-sm-12 my-3">
+        <div class="blo me-2">
           <%= form.label :county, '縣市', class: 'form-label' %>
-          <select class="county" ></select>
+          <select class="county" data-value="<%= store.county %>"></select>
         </div>
-        <div class="blo col-3 my-3">
+        <div class="blo">
           <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
-          <select class="district" ></select>
+          <select class="district" data-value="<%= store.district %>"></select>
         </div>
       </div>
-      <div class="col-6 my-3">
+      <div class="col-md-6 col-sm-12 my-3">
         <%= form.label :street_address, '街道名稱', class: 'form-label' %>
         <%= form.text_field :street_address, class: 'form-control' %>
       </div>
@@ -44,7 +44,7 @@
         <%= form.label :note, '備註', class: 'form-label' %>
         <%= form.text_area :note, class: 'form-control', rows: 3 %>
       </div>
-      <div class="col-12 my-3">
+      <div class="col-md-3 col-sm-12 my-3">
         <%= form.check_box :online, class: 'form-check-input' %>
         <%= form.label :online, '營業中', class: 'form-check-label' %>
       </div>
