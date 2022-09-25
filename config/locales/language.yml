@@ -3,6 +3,7 @@ zh-TW:
     models:
       store: 店家
       meal: 餐點
+      group: 團體
     attributes:
       user:
         nickname: "暱稱"

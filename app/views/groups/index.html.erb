@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-between align-items-start">
+  <h2>已加入的團體清單</h2>
+  <%= link_to "新增團體", new_group_path, class: 'btn btn-success mb-2' %>
+</div>
+
+<ul class="list-group">
+  <% @groups.each do |group| %>
+    <li class="list-group-item">
+      <div class="row">
+        <div class="col-10">
+          <%= link_to group.name, group_path(group), class: 'fs-5' %>
+        </div>
+        <% if group.editable?(current_user) %>
+          <div class="col-2 d-flex justify-content-end">
+            <%= link_to edit_group_path(group), class: 'me-2' do %>
+              <i class="bi bi-pencil-square fs-5"></i>
+            <% end %>
+            <%= link_to group_path(group), class: 'text-danger', data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？'} do %>
+              <i class="bi bi-trash fs-5"></i>
+            <% end %>
+          </div>
+        <% end %>
+        <div class="col-12">
+          <p class="text-muted fs-6 ms-3 mt-1 mb-1"><%= group.description %></p>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>

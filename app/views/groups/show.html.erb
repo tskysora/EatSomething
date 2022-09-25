@@ -1,0 +1,50 @@
+<div class="">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <p class="fs-4 text-primary my-0 me-2">歡迎來到</p>
+      <h2 class="my-0"><%= @group.name %></h2>
+    </div>
+    <div>
+      <% if current_user.member?(@group) %>
+      <%= link_to "離開團體", quit_group_path(@group), class: 'btn btn-primary text-light', data: { turbo_method: :post, turbo: true} %>
+      <% else %>
+      <%= link_to "加入團體", join_group_path(@group), class: 'btn btn-secondary', data: { turbo_method: :post, turbo: true} %>
+      <% end %>
+    </div>
+  </div>
+  <p class="fs-5 my-2"><%= @group.description %></p>
+</div>
+
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-start pt-3">
+    <div>
+      <h5 class="">團體成員</h5>
+    </div>
+    <div class="ms-auto">
+      <span class="text-primary">
+        團體創建人：<%= @group.owner.email %>
+      </span>
+    </div>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col">email</th>
+          <th scope="col">暱稱</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @group.members.each do |member| %>
+          <tr>
+            <th scope="row"></th>
+            <td><%= member.email %></td>
+            <td><%= member.nickname %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+

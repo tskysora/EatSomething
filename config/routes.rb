@@ -9,6 +9,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # resources :groups, param: :invite_token do
+  resources :groups do
+    member do
+      post :join
+      post :quit
+    end
+    resources :memberships, only: [ :new, :create ]
+    resource :invite_link, only: [ :show ]
+  end
+
   # Defines the root path route ("/")
   root "home#index"
 end

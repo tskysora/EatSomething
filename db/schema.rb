@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_09_03_041932) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_24_080707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -53,6 +53,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_03_041932) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "invite_token"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["deleted_at"], name: "index_groups_on_deleted_at"
+    t.index ["invite_token"], name: "index_groups_on_invite_token", unique: true
+    t.index ["user_id"], name: "index_groups_on_user_id"
+  end
+
   create_table "meals", force: :cascade do |t|
     t.string "name"
     t.integer "price"
@@ -64,6 +77,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_03_041932) do
     t.integer "position"
     t.index ["deleted_at"], name: "index_meals_on_deleted_at"
     t.index ["store_id"], name: "index_meals_on_store_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_memberships_on_group_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -105,6 +127,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_09_03_041932) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "groups", "users"
   add_foreign_key "meals", "stores"
+  add_foreign_key "memberships", "groups"
+  add_foreign_key "memberships", "users"
   add_foreign_key "stores", "users"
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  invite_token: MyString
+  deleted_at: 2022-09-18 22:34:27
+
+two:
+  name: MyString
+  description: MyString
+  invite_token: MyString
+  deleted_at: 2022-09-18 22:34:27

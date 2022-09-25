@@ -1,0 +1,15 @@
+<%= form_with model: group, data: "turbo: false" do |form| %>
+  <div class="row card-body">
+    <div class="col-12">
+      <%= form.label :name, '團體名稱', class: 'form-label' %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="col-12 mt-3">
+      <%= form.label :description, '描述', class: 'form-label' %>
+      <%= form.text_field :description, class: 'form-control' %>
+    </div>
+    <div class="my-3">
+      <%= form.submit class: 'btn btn-primary text-light' %>
+    </div>
+  </div>
+<% end %>
