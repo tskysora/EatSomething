@@ -15,4 +15,7 @@ class Group < ApplicationRecord
     user && user == owner
   end
   
+  def to_param
+    invite_token
+  end
 end

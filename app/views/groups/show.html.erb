@@ -1,7 +1,7 @@
 <div class="">
   <div class="d-flex justify-content-between align-items-center">
     <div class="d-flex align-items-center">
-      <p class="fs-4 text-primary my-0 me-2">歡迎來到</p>
+      <!-- <p class="fs-4 text-primary my-0 me-2">歡迎來到</p> -->
       <h2 class="my-0"><%= @group.name %></h2>
     </div>
     <div>
@@ -15,36 +15,105 @@
   <p class="fs-5 my-2"><%= @group.description %></p>
 </div>
 
-<div class="card">
-  <div class="card-header d-flex justify-content-between align-items-start pt-3">
-    <div>
-      <h5 class="">團體成員</h5>
-    </div>
-    <div class="ms-auto">
-      <span class="text-primary">
-        團體創建人：<%= @group.owner.email %>
-      </span>
+<div class="row">
+  <div class="col col-md-7 col-sm-12">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-start pt-3">
+        <div>
+          <h5 class="">團體成員</h5>
+        </div>
+        <div class="ms-auto">
+          <span class="text-primary">
+            團體管理員：<%= @group.owner.email %>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">email</th>
+              <th scope="col">暱稱</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @group.members.each do |member| %>
+              <tr>
+                <th scope="row"></th>
+                <td><%= member.email %></td>
+                <td><%= member.nickname %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="card-body">
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col"></th>
-          <th scope="col">email</th>
-          <th scope="col">暱稱</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @group.members.each do |member| %>
-          <tr>
-            <th scope="row"></th>
-            <td><%= member.email %></td>
-            <td><%= member.nickname %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class="col col-md-5 col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <div data-controller="invite">
+          <h5>邀請連結</h5>
+          <input type="text" class="form-control w-100 my-2" name="" id="url" value="<%= new_group_membership_url(@group) %>" data-invite-target="url" data-group-token="<%= @group.invite_token %>">
+          <div class="d-flex justify-content-around align-items-center">
+            <button class="btn btn-primary text-light" id="regenerate-btn" data-action="click->invite#regenerate">重新生成</button>
+            <button class="btn btn-secondary" id="copy-url-btn" data-action="click->invite#copy">複製連結</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
+<!-- <div class="row my-5">
+  <div class="col col-4">
+    <div class="card">
+      <div class="card-header">
+        團體成員
+      </div>
+      <ul class="list-group list-group-flush">
+        <% @group.members.each do |member| %>
+          <li class="list-group-item"><%= member.email %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="col col-8">
+    <div class="card">
+      <div class="card-body d-flex justify-content-between align-items-center">
+        <h3 class="my-0"><%= @group.name %></h3>
+        <div>
+          <% if current_user.member?(@group) %>
+          <%= link_to "離開團體", quit_group_path(@group), class: 'btn btn-primary text-light', data: { turbo_method: :post, turbo: true} %>
+          <% else %>
+          <%= link_to "加入團體", join_group_path(@group), class: 'btn btn-secondary', data: { turbo_method: :post, turbo: true} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text"><%= @group.description %></p>
+        <hr>
+        <h5>Invite Link</h5>
+        <input type="text" class="form-control w-100 my-2" name="" id="">
+        <div class="d-flex justify-content-around align-items-center">
+          <a href="#" class="btn btn-primary">Go somewhere</a>
+          <a href="#" class="btn btn-secondary">Go somewhere</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toast-view"  class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay=3000>
+    <div class="d-flex">
+      <div class="toast-body">
+        TEST!
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
+  devise_for :users, controllers: { sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
 
@@ -9,8 +9,8 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :groups, param: :invite_token do
-  resources :groups do
+  resources :groups , param: :invite_token do
+  # resources :groups do
     member do
       post :join
       post :quit
@@ -22,3 +22,4 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 end
+

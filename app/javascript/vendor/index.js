@@ -1,3 +1,3 @@
 import "./sortable"
-import "./bootstrap"
+import "./bootstrapJs"
 import "./tw-city-selector"

@@ -20,6 +20,8 @@
         </div>
       <% end %>
 
+      <%= f.hidden_field :invite_token, value: @group.invite_token if @group %>
+
       <div class="actions my-3">
         <%= f.submit "登入", class: 'btn btn-primary text-light' %>
       </div>

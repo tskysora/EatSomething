@@ -5,14 +5,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @group = Group.find_by_invite_token(params[:invite_token]) if params[:invite_token]
+    super
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    if resource.save && params[:user].key?(:invite_token)
+      group = Group.find_by_invite_token(params[:user][:invite_token])
+      Membership.create(group: group, user: resource)
+    end
+  end
 
   # GET /resource/edit
   # def edit

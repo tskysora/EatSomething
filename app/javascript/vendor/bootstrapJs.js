@@ -1,4 +1,5 @@
 import Collapse from 'bootstrap/js/dist/collapse'
+import Toast from 'bootstrap/js/dist/toast'
 
 document.addEventListener('turbo:load', () => {
   function collapseMobileHandler() {
@@ -24,5 +25,29 @@ document.addEventListener('turbo:load', () => {
     });
   }
   
-  collapseMobileHandler();
+  function copyToastHandler() {
+    const toastTrigger = document.getElementById('copy-url-btn')
+    const toastLiveExample = document.getElementById('toast-view')
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+      })
+    }
+  }
+
+  function regenerateToastHandler() {
+    const toastTrigger = document.getElementById('regenerate-btn')
+    const toastLiveExample = document.getElementById('toast-view')
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExample)
+        toast.show()
+      })
+    }
+  }
+  
+  // collapseMobileHandler();
+  copyToastHandler();
+  regenerateToastHandler();
 })
