@@ -1,6 +1,6 @@
 <%- if controller_name != 'sessions' %>
   <% if @group %>
-    <%= link_to "登入", new_session_path(resource_name, invite_token: @group.invite_token) %><br />
+    <%= link_to "登入", new_session_path(resource_name, invite_token: @group.token.invite_token) %><br />
   <% else %>
     <%= link_to "登入", new_session_path(resource_name) %><br />
   <% end %>
@@ -8,7 +8,7 @@
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <% if @group %>
-    <%= link_to "註冊", new_registration_path(resource_name, invite_token: @group.invite_token) %><br />
+    <%= link_to "註冊", new_registration_path(resource_name, invite_token: @group.token.invite_token) %><br />
   <% else %>
     <%= link_to "註冊", new_registration_path(resource_name) %><br />
   <% end %>

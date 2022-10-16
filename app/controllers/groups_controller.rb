@@ -15,6 +15,7 @@ class GroupsController < ApplicationController
     @group = current_user.groups.new(group_params)
     
     if @group.save
+      Invite.where(group: @group).create
       current_user.join!(@group)
       redirect_to groups_path, notice: "團體新增成功！"
     else
@@ -35,18 +36,22 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+   if @group.members.size < 2
     @group.destroy
     redirect_to groups_path, notice: "團體刪除成功！"
+  elsif 
+    redirect_to groups_path, notice: "請移交管理權！"
+   end
   end
 
   def show
-    # @group = Group.includes(:members).find(params[:id])
-    @group = Group.includes(:members).find_by_invite_token(params[:invite_token])
+    @group = Group.includes(:members).find(params[:id])
+    # @group = Group.includes(:members).find_by_invite_token(params[:invite_token])
   end
 
   def join
-    # @group = Group.find(params[:id])
-    @group = Group.find_by_invite_token(params[:invite_token])
+    @group = Group.find(params[:id])
+    # @group = Group.find_by_invite_token(params[:invite_token])
     if !current_user.member?(@group)
       current_user.join!(@group)
       flash[:notice] = '已成功加入團體！'
@@ -57,8 +62,8 @@ class GroupsController < ApplicationController
   end
 
   def quit
-    # @group = Group.find(params[:id])
-    @group = Group.find_by_invite_token(params[:invite_token])
+    @group = Group.find(params[:id])
+    # @group = Group.find_by_invite_token(params[:invite_token])
     if current_user.member?(@group)
       current_user.quit!(@group)
       flash[:notice] = '你已離開此團體！'
@@ -71,8 +76,8 @@ class GroupsController < ApplicationController
   private
 
   def find_group
-    # @group = current_user.groups.find(params[:id])
-    @group = current_user.groups.find_by_invite_token(params[:invite_token])
+    @group = current_user.groups.find(params[:id])
+    # @group = current_user.groups.find_by_invite_token(params[:invite_token])
   end
 
   def group_params

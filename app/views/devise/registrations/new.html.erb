@@ -30,7 +30,7 @@
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
       </div>
     
-      <%= f.hidden_field :invite_token, value: @group.invite_token if @group %>
+      <%= f.hidden_field :invite_token, value: @group.token.invite_token if @group %>
 
       <div class="actions my-3">
         <%= f.submit "註冊", class: 'btn btn-primary text-light' %>

@@ -17,8 +17,9 @@ export default class extends Controller {
   }
 
   async regenerate() {
-    const groupToken = this.urlTarget.dataset.groupToken;
-    const data = await fetch(`/groups/${groupToken}/invite_link`, {
+    // const inviteToken = this.urlTarget.dataset.inviteToken;
+    const groupId = this.urlTarget.dataset.groupId;
+    const data = await fetch(`/groups/${groupId}/invite_link`, {
        headers: 
        {
          accept: "application/json" 
@@ -38,7 +39,7 @@ export default class extends Controller {
     console.log(data);
 
     this.urlTarget.value = data.link;
-    this.urlTarget.setAttribute('data-group-token', data.invite_token);
+    this.urlTarget.setAttribute('data-invite-token', data.invite_token);
     this.urlTarget.setAttribute('value', data.link);
     document.querySelector(".toast-body").innerHTML = "邀請連結已重新生成！"
     // $('.toast').toast('show');
