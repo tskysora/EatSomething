@@ -1,0 +1,79 @@
+<div>
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex align-items-center">
+      <h2 class="my-0"><%= group.name %></h2>
+    </div>
+    <div>
+      <% if group.members.size > 1 %>
+        <%= link_to "離開團體", quit_group_path(group), class: 'btn btn-primary text-light', data: { turbo_method: :post, turbo: true} %>
+      <% end %>
+    </div>
+  </div>
+  <p class="fs-5 my-2"><%= group.description %></p>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-7">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-start pt-3">
+        <div>
+          <h5 class="">團體成員</h5>
+        </div>
+        <div class="ms-auto">
+          <span class="text-primary">
+            團體管理員：<%= group.owner.email %>
+          </span>
+        </div>
+      </div>
+      <div class="card-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col"></th>
+              <th scope="col">email</th>
+              <th scope="col">暱稱</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% group.members.each do |member| %>
+              <tr>
+                <th scope="row"></th>
+                <td><%= member.email %></td>
+                <td><%= member.nickname %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-5">
+    <div class="card">
+      <div class="card-body">
+        <div data-controller="invite">
+          <h5>邀請連結</h5>
+          <input type="text" class="form-control w-100 my-2" name="" id="url" value="<%= new_invite_membership_url(group.token) %>" data-invite-target="url" data-invite-token="<%= group.token.invite_token %>" data-group-id="<%= group.id %>">
+          <div class="d-flex justify-content-around align-items-center">
+            <% if group.editable?(current_user) %>
+              <button class="btn btn-primary text-light" id="regenerate-btn" data-action="click->invite#regenerate">重新生成</button>
+            <% end %>
+            <button class="btn btn-secondary" id="copy-url-btn" data-action="click->invite#copy">複製連結</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Toast -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="toast-view"  class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay=3000>
+    <div class="d-flex">
+      <div class="toast-body">
+        TEST!
+      </div>
+      <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+  </div>
+</div>

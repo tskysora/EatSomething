@@ -56,6 +56,7 @@ gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'mini_magick', '~> 4.11'
 gem 'pagy', '~> 5.10', '>= 5.10.1'
 gem 'acts_as_list', '~> 1.0', '>= 1.0.4'
+gem 'babosa', '~> 2.0'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

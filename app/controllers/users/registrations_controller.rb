@@ -17,10 +17,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     super
     if resource.save && params[:user].key?(:invite_token)
-      invite = Invite.find_by_invite_token(params[:user][:invite_token])
-      group = Group.find_by(id:invite.group_id)
-      Membership.create(group: group, user: resource)
-      flash[:notice] = "已成功加入#{group.name}！"
+      @invite = Invite.find_by_invite_token(params[:user][:invite_token])
+      @group = Group.find_by(id:@invite.group_id)
+      Membership.create(group: @group, user: resource)
+      flash[:notice] = "已成功加入#{@group.name}！"
     end
   end
 

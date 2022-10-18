@@ -15,15 +15,21 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create
     if params[:user][:invite_token]
-      invite = Invite.find_by_invite_token(params[:user][:invite_token])
-      group = Group.find_by(id:invite.group_id)
-      Membership.where(group: group, user: current_user).first_or_create
-      super
-      flash[:notice] = "已成功加入#{group.name}！"
+      @invite = Invite.find_by_invite_token(params[:user][:invite_token])
+      @group = Group.find_by(id:@invite.group_id)
+      if !current_user.member?(@group)
+        Membership.where(group: @group, user: current_user).first_or_create
+        super
+        flash[:notice] = "已成功加入#{@group.name}！"  
+      else
+        super
+        flash[:notice] = "你已經是#{@group.name}的會員了！"
+      end
     else
       super
     end
   end
+
   
 
   # DELETE /resource/sign_out

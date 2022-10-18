@@ -1,19 +1,23 @@
 class Group < ApplicationRecord
-
-  has_secure_token :invite_token
   belongs_to :owner, class_name: "User", foreign_key: :user_id
-  has_one :token, class_name: "Invite"
+  has_one :token, class_name: "Invite", dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
   validates :name, presence: true
 
+  extend FriendlyId
+  friendly_id :code_generator, use: :slugged
 
-  def member?(user)
-    users.include?(user)
+  def normalize_friendly_id(input)
+    input.to_s.to_slug.normalize(transliterations: :russian).to_s
   end
 
   def editable?(user)
     user && user == owner
   end
-  
+
+  private
+  def code_generator
+    "#{name} - #{SecureRandom.hex[0,8]}"
+  end
 end
