@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_16_071248) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_23_141837) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,6 +40,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_071248) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.datetime "date"
+    t.string "period"
+    t.datetime "deleted_at"
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
+    t.index ["deleted_at"], name: "index_events_on_deleted_at"
+    t.index ["group_id"], name: "index_events_on_group_id"
+    t.index ["slug"], name: "index_events_on_slug", unique: true
+    t.index ["store_id"], name: "index_events_on_store_id"
+    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -136,6 +153,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_16_071248) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "events", "groups"
+  add_foreign_key "events", "stores"
+  add_foreign_key "events", "users"
   add_foreign_key "groups", "users"
   add_foreign_key "invites", "groups"
   add_foreign_key "meals", "stores"

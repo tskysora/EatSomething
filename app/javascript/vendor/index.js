@@ -1,3 +1,6 @@
 import "./sortable"
-import "./bootstrapJs"
+import "./bootstrap_js"
 import "./tw-city-selector"
+// import "./bootstrap-datepicker"
+import "./select2"
+import "./flatpicker"

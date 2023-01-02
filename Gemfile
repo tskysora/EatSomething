@@ -57,6 +57,8 @@ gem 'mini_magick', '~> 4.11'
 gem 'pagy', '~> 5.10', '>= 5.10.1'
 gem 'acts_as_list', '~> 1.0', '>= 1.0.4'
 gem 'babosa', '~> 2.0'
+gem 'bootstrap-datepicker-rails', '~> 1.9', '>= 1.9.0.1'
+gem 'select2-rails', '~> 4.0', '>= 4.0.13'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"

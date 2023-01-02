@@ -1,23 +1,86 @@
-<div>
-  <div class="d-flex justify-content-between align-items-center">
-    <div class="d-flex align-items-center">
-      <h2 class="my-0"><%= group.name %></h2>
-    </div>
-    <div>
+<div class="row">
+  <div class="col-12 col-md-3 mb-2">
+    <h2 class="my-0"><%= group.name %></h2>
+    <p class="fs-6 my-2"><%= group.description %></p>
+
+    <div class="d-flex flex-md-column justify-content-evenly">
+      <% if group.editable?(current_user) %>
+        <%= link_to '編輯團體資訊', edit_group_path(group), class: 'btn btn-sm btn-success mb-2' %>
+          <%= link_to '刪除團體', group_path(group), class: 'btn btn-sm btn-danger mb-2' , data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？' } %>
+      <% end %>
       <% if group.members.size > 1 %>
-        <%= link_to "離開團體", quit_group_path(group), class: 'btn btn-primary text-light', data: { turbo_method: :post, turbo: true} %>
+        <%= link_to "離開團體", quit_group_path(group), class: 'btn btn-sm btn-primary text-light mb-2', data: { turbo_method: :post, turbo: true, turbo_confirm: '真的要離開嗎？'} %>
       <% end %>
     </div>
-  </div>
-  <p class="fs-5 my-2"><%= group.description %></p>
-</div>
 
-<div class="row">
-  <div class="col-12 col-md-7">
-    <div class="card">
-      <div class="card-header d-flex justify-content-between align-items-start pt-3">
+    <div class="card mb-3">
+      <div class="card-body p-2">
+        <div data-controller="invite">
+          <span class="fs-5 fw-bold">邀請連結</span>
+          <input type="text" class="form-control w-100 my-2" name="" id="url" value="<%= new_invite_membership_url(group.token) %>" data-invite-target="url" data-invite-token="<%= group.token.invite_token %>" data-group-id="<%= group.id %>">
+          <div class="d-flex flex-md-column justify-content-evenly">
+            <% if group.editable?(current_user) %>
+              <button class="btn btn-sm btn-primary text-light mb-2" id="regenerate-btn" data-action="click->invite#regenerate">重新生成</button>
+            <% end %>
+            <button class="btn btn-sm btn-secondary mb-2" id="copy-url-btn" data-action="click->invite#copy">複製連結</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="col-12 col-md-9 mb-2">
+
+    <div class="card mb-3">
+      <div class="card-header d-flex justify-content-between align-items-center p-3">
         <div>
-          <h5 class="">團體成員</h5>
+          <span class="fs-5 fw-bold">團體活動</span>
+        </div>
+        <div class="ms-auto">
+          <%= link_to "建立活動", new_event_path(group: group.slug), class: 'btn btn-success btn-sm' %>
+        </div>
+      </div>
+      <div class="card-body">
+        <% if @events_unexpired.empty?  %>
+        <div class="d-flex justify-content-center align-items-center">
+          <h5>目前沒有任何活動</h5>  
+        </div>
+        <% else %>
+          <div class="list-group list-group-flush">
+            <div class="list-group-item list-group-item-action list-group-item-primary fw-bold">
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="col-5">日期</div>
+                <div class="col-3">時段</div>
+                <div class="col-4">店家</div>
+              </div>
+            </div>
+            <% @events_unexpired.each do |event| %>
+              <div class="list-group-item list-group-item-action">
+                <%= link_to event_path(event) do %>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <div class="col-5">
+                      <%= event.date.strftime("%Y-%m-%d") %>
+                    </div>
+                    <div class="col-3">
+                      <%= t(event.period, :scope=> "event.period") %>
+                    </div>
+                    <div class="col-4">
+                      <%= event.store.name %>
+                    </div>
+                  </div>
+                  <% end %>
+              </div>
+              <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-header d-flex justify-content-between align-items-center p-3">
+        <div>
+          <span class="fs-5 fw-bold">團體成員</span>
         </div>
         <div class="ms-auto">
           <span class="text-primary">
@@ -46,25 +109,9 @@
         </table>
       </div>
     </div>
-  </div>
-  <div class="col-12 col-md-5">
-    <div class="card">
-      <div class="card-body">
-        <div data-controller="invite">
-          <h5>邀請連結</h5>
-          <input type="text" class="form-control w-100 my-2" name="" id="url" value="<%= new_invite_membership_url(group.token) %>" data-invite-target="url" data-invite-token="<%= group.token.invite_token %>" data-group-id="<%= group.id %>">
-          <div class="d-flex justify-content-around align-items-center">
-            <% if group.editable?(current_user) %>
-              <button class="btn btn-primary text-light" id="regenerate-btn" data-action="click->invite#regenerate">重新生成</button>
-            <% end %>
-            <button class="btn btn-secondary" id="copy-url-btn" data-action="click->invite#copy">複製連結</button>
-          </div>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
-
 
 <!-- Toast -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">

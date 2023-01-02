@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :groups
   has_many :memberships
   has_many :participated_groups, through: :memberships, source: :group
+  has_many :events
   
   validates :nickname, presence: true
 

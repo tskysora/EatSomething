@@ -267,6 +267,11 @@
   "resolved" "https://registry.npmjs.org/is-number/-/is-number-7.0.0.tgz"
   "version" "7.0.0"
 
+"jquery@^3.6.1":
+  "integrity" "sha512-opJeO4nCucVnsjiXOE+/PcCgYw9Gwpvs/a6B1LL/lQhwWwpbVEVYDZ1FokFr8PRc7ghYlrFPuyHuiiDNTQxmcw=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.1.tgz"
+  "version" "3.6.1"
+
 "marked@^1.2.9":
   "integrity" "sha512-H8lIX2SvyitGX+TRdtS06m1jHMijKN/XjfH6Ooii9fvxMlh8QdqBfBDkGUpMWH2kQNrtixjzYUa3SH8ROTgRRw=="
   "resolved" "https://registry.npmjs.org/marked/-/marked-1.2.9.tgz"
@@ -392,6 +397,11 @@
     "chokidar" ">=3.0.0 <4.0.0"
     "immutable" "^4.0.0"
     "source-map-js" ">=0.6.2 <2.0.0"
+
+"select2@^4.1.0-rc.0":
+  "integrity" "sha512-Hr9TdhyHCZUtwznEH2CBf7967mEM0idtJ5nMtjvk3Up5tPukOLXbHUNmh10oRfeNIhj+3GD3niu+g6sVK+gK0A=="
+  "resolved" "https://registry.npmjs.org/select2/-/select2-4.1.0-rc.0.tgz"
+  "version" "4.1.0-rc.0"
 
 "sortablejs@^1.15.0":
   "integrity" "sha512-bv9qgVMjUMf89wAvM6AxVvS/4MX3sPeN0+agqShejLU5z5GX4C75ow1O2e5k4L6XItUyAK3gH6AxSbXrOM5e8w=="

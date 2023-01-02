@@ -1,0 +1,48 @@
+// Sortable
+.sortable-items {
+  .item {
+    cursor: pointer;
+  }
+}
+
+.sortable-drag {
+  background-color: #F1F1F1;
+}
+
+.city-selector {
+
+  .blo {
+    width: 47%;
+    display: inline-block;
+
+    select {
+      border-radius: 0.2em;
+      border-color: #ced4da;
+      width: 100%;
+      padding: 0.5em;
+    }
+  }
+}
+
+//  Select2 style
+.select2-container {
+  .select2-selection {
+    height: 37px !important;
+  }
+
+  .select2-selection__rendered {
+    margin-top: 4px !important;
+  }
+
+  .select2-selection__arrow {
+    margin-top: 4px;
+  }
+
+  .select2-selection--single {
+    border: 1px solid #ced4da !important;
+  }
+
+  *:focus {
+    outline: none;
+  }
+}

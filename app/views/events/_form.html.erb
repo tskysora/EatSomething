@@ -1,0 +1,35 @@
+<%= form_with model: event, data: "turbo: false" do |form| %>
+  <div class="row card-body d-flex justify-content-between align-items-center">
+    <div class="col-12 mb-3">
+      <%= form.label :date, '日期', class: 'form-label' %>
+      <!-- <%= form.date_field :date, class: 'form-control' %> -->
+      <%= form.text_field :date, class: 'form-control datepicker', placeholder: '挑選日期...' %>
+    </div>
+    <div class="col-12 mb-3">
+      <%= form.label :store_id, '店家名稱', class: 'form-label' %>
+      <!-- <%= form.text_field :name, class: 'form-control' %> -->
+      <%= form.select :store_id, current_user.stores.available.map{ |store| [ "#{store.name} #{store.branch}", store.id] }, {}, class: 'form-control event-store_id', style: "width: 100%" %>
+    </div>
+    <div class="col-12 mb-3">
+      <%= form.label :period, '用餐時段', class: 'form-label me-3' %>
+      <% Event::PERIOD.each do |period| %>
+      <label class="form-check form-check-inline">
+        <%= form.radio_button :period, period, class: 'form-check-input' %>
+        <%= t(period, :scope => "event.period") %>
+      </label>
+      <% end %>
+    </div>
+    <div class="col-12 mb-3">
+      <% if @group %>
+        <%= form.hidden_field :group_id, value: @group.id %>
+      <% else %>
+        <%= form.hidden_field :group_id, value: event.group_id %>
+      <% end %>
+    </div>
+    
+    <div class="">
+      <%= form.submit class: 'btn btn-primary text-light' %>
+    </div>
+  </div>
+<% end %>
+

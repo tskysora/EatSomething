@@ -3,6 +3,7 @@ class Group < ApplicationRecord
   has_one :token, class_name: "Invite", dependent: :destroy
   has_many :memberships, dependent: :destroy
   has_many :members, through: :memberships, source: :user
+  has_many :events
   validates :name, presence: true
 
   extend FriendlyId
@@ -14,6 +15,11 @@ class Group < ApplicationRecord
 
   def editable?(user)
     user && user == owner
+  end
+
+  def unexpired?(date)
+    # date < Time.zone.now
+    date > 1.day.ago
   end
 
   private

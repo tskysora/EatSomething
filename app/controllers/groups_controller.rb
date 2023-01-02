@@ -39,14 +39,15 @@ class GroupsController < ApplicationController
   def destroy
    if @group.members.size < 2
     @group.destroy
-    redirect_to groups_path, notice: "團體刪除成功！"
-  elsif 
+    redirect_to groups_path, notice: "團體刪除成功！", status: :see_other
+   else
     redirect_to groups_path, notice: "請移交管理權！"
    end
   end
 
   def show
-
+    find_events
+    find_events_unexpired
   end
 
   def join
@@ -69,6 +70,10 @@ class GroupsController < ApplicationController
     redirect_to groups_path
   end
 
+  def find_events_unexpired
+    @events_unexpired = @events.select { |event| event.date > 1.day.ago }
+  end
+
   private
 
   def find_group_self
@@ -77,6 +82,10 @@ class GroupsController < ApplicationController
 
   def find_group
     @group = Group.friendly.find(params[:id])
+  end
+
+  def find_events
+    @events = Event.where(group: @group).includes(:store).order(:date)
   end
 
   def group_params

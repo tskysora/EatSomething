@@ -1,0 +1,71 @@
+<!-- <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">日期</th>
+      <th scope="col">時段</th>
+      <th scope="col">店家</th>
+      <th scope="col">發起的團體</th>
+      <th scope="col">功能</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% events.each do |event| %>
+      <tr>
+        <th scope="row">
+          <%= event.date.strftime("%Y-%m-%d") %>
+        </th>
+        <td>
+          <%= t(event.period, :scope=> "event.period") %>
+        </td>
+        <td>
+          <%= event.store.name %>
+        </td>
+        <td>
+          <%= event.group.name %>
+        </td>
+        <td>
+          <i class="fa-solid fa-utensils me-2"></i>
+          <% if current_user==event.user %>
+            <%= link_to edit_event_path(event) do %>
+              <i class="bi bi-pencil-square fs-5"></i>
+            <% end %>
+            <%= link_to event_path(event), data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？' } do %>
+              <i class="bi bi-trash fs-5"></i>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table> -->
+
+<div class="list-group mt-3">
+  <div class="list-group-item list-group-item-action list-group-item-primary fw-bold">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="col-4">日期</div>
+      <div class="col-2">時段</div>
+      <div class="col-3">店家</div>
+      <div class="col-3">發起的團體</div>
+    </div>
+  </div>
+  <% events.each do |event| %>
+    <div class="list-group-item list-group-item-action">
+      <%= link_to event_path(event) do %>
+        <div class="d-flex justify-content-center align-items-center">
+          <div class="col-4">
+            <%= event.date.strftime("%Y-%m-%d") %>
+          </div>
+          <div class="col-2">
+            <%= t(event.period, :scope=> "event.period") %>
+          </div>
+          <div class="col-3">
+            <%= event.store.name %>
+          </div>
+          <div class="col-3">
+            <%= event.group.name %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,9 +1,15 @@
 zh-TW:
+  event:
+    period:
+      breakfast: 早餐
+      lunch: 午餐
+      dinner: 晚餐
   activerecord:
     models:
       store: 店家
       meal: 餐點
       group: 團體
+      event: 活動
     attributes:
       user:
         nickname: "暱稱"

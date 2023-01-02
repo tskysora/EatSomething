@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-12 col-md-2 mb-2">
+    <div class="row">
+      <div class="col-7 col-md-12">
+        <p class="m-0"><%= @event.date.strftime("%Y") %></p>
+        <h3 class="m-0"><%= @event.date.strftime("%m-%d") %></h3>
+        <p class="fs-5 my-2"><%= t(@event.period, :scope=> "event.period") %></p>
+        <%= link_to @event.group.name , group_path(@event.group), class: 'fs-5' %>
+      </div>
+      <div class="col-5 col-md-12">
+      <% if current_user==@event.user %>
+          <div class="d-flex flex-column mt-4">
+            <%= link_to '編輯活動資訊', edit_event_path(@event), class: 'btn btn-sm btn-success mb-2' %>
+              <%= link_to '刪除活動', event_path(@event), class: 'btn btn-sm btn-danger mb-2' , data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？' } %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-12 col-md-10 mb-2">
+    <div class="card">
+      <div class="card-header d-flex">
+        <div>
+          <span class="fs-4">
+            <%= @event.store.name %>
+            <%= @event.store.branch %>
+          </span>
+          <span>的菜單</span>
+        </div>
+      </div>
+      <div class="row card-body d-flex justify-content-between align-items-center">
+        <div class="col-12 mb-3">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

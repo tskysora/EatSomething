@@ -1,0 +1,25 @@
+<h2>所有活動清單</h2>
+
+<!-- Nav tabs -->
+<ul class="nav nav-tabs" id="eventTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="unexpired-tab" data-bs-toggle="tab" data-bs-target="#unexpired" type="button"
+      role="tab" aria-controls="unexpired" aria-selected="true">未到期的活動</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="expired-tab" data-bs-toggle="tab" data-bs-target="#expired" type="button" role="tab"
+      aria-controls="expired" aria-selected="false">過期的活動</button>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="unexpired" role="tabpanel" aria-labelledby="unexpired-tab" tabindex="0">
+    <%= render 'event_list' , events: @events_unexpired %>
+  </div>
+  <div class="tab-pane" id="expired" role="tabpanel" aria-labelledby="expired-tab" tabindex="0">
+    <%= render 'event_list' , events: @events_expired %>
+  </div>
+</div>
+
+
+

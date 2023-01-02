@@ -6,6 +6,7 @@ class Store < ApplicationRecord
   
   belongs_to :user
   has_many :meals
+  has_many :events
   accepts_nested_attributes_for :meals, reject_if: :all_blank, allow_destroy: true
   has_one_attached :menu
 
