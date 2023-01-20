@@ -7,6 +7,8 @@ import { application } from "./application"
 import MealFieldsController from "./meal_fields_controller"
 import DisplayController from "./display_controller"
 import InviteController from "./invite_controller"
+import AdminController from "./admin_controller"
 application.register("meal-fields", MealFieldsController)
 application.register("display", DisplayController)
 application.register("invite", InviteController)
+application.register("admin", AdminController)

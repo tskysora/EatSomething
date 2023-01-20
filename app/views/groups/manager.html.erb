@@ -1,0 +1,21 @@
+<div class="card" data-controller="admin">
+  <div class="card-header d-flex">
+    <div>
+      <span class="fs-3">
+        <%= @group.name %>
+        轉移管理權
+      </span>
+    </div>
+  </div>
+  <%= form_with model: @group, url: transfer_group_path(@group) ,data: "turbo: false" do |form| %>
+    <div class="row card-body">
+      <div class="col-12">
+        <%= form.label :user_id, '會員email', class: 'form-label' %>
+        <%= form.select :user_id, @group.members.map{ |user| [ user.email , user.id] }, {}, class: 'form-control group-user_id' , style: "width: 100%" %>
+      </div>
+      <div class="my-3 d-flex justify-content-between">
+        <%= form.submit '轉移管理權', class: 'btn btn-primary text-light' %>
+      </div>
+    </div>
+  <% end %>
+</div>

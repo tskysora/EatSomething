@@ -8,8 +8,9 @@
       <%= form.label :description, '描述', class: 'form-label' %>
       <%= form.text_field :description, class: 'form-control' %>
     </div>
-    <div class="my-3">
+    <div class="my-3 d-flex justify-content-between">
       <%= form.submit class: 'btn btn-primary text-light' %>
+      <%= link_to "移交管理權", manager_group_path(group), class: 'btn btn-outline-secondary' %>
     </div>
   </div>
 <% end %>

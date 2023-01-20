@@ -5,6 +5,10 @@ document.addEventListener('turbo:load', () => {
     placeholder: '選擇店家...',
 
   });
+  $('.group-user_id').select2({
+    language: 'zh-TW',
+    placeholder: '填寫email...',
+  });
 })
 
 // In your Javascript (external .js resource or <script> tag)
@@ -16,3 +20,9 @@ document.addEventListener('turbo:load', () => {
 //   language: 'zh-TW',
 //   placeholder: '請選擇店家',
 // });
+
+function matchCustom(params, data) {
+  if (typeof data.text === 'undefined') {
+    return null;
+  }
+}

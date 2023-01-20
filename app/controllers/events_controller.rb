@@ -40,7 +40,7 @@ class EventsController < ApplicationController
 
   def destroy
     @event.destroy
-    redirect_to events_path, notice: "活動刪除成功！"
+    redirect_to events_path, notice: "活動刪除成功！", status: :see_other
   end
 
   def find_events_expired

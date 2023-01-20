@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_group_self, only: [:edit, :update, :destroy]
+  before_action :find_group_self, only: [:edit, :update, :destroy, :manager, :transfer]
   before_action :find_group, only: [:show, :quit]
 
   def index
@@ -74,6 +74,18 @@ class GroupsController < ApplicationController
     @events_unexpired = @events.select { |event| event.date > 1.day.ago }
   end
 
+  def manager
+
+  end
+
+  def transfer
+    if @group.update(group_manager_params)
+      redirect_to groups_path, notice: "已轉移管理權！"
+    else
+      render :manager
+    end
+  end
+
   private
 
   def find_group_self
@@ -92,4 +104,7 @@ class GroupsController < ApplicationController
     params.require(:group).permit(:name, :description)
   end
 
+  def group_manager_params
+    params.require(:group).permit(:user_id)
+  end
 end

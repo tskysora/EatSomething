@@ -17,11 +17,6 @@ class Group < ApplicationRecord
     user && user == owner
   end
 
-  def unexpired?(date)
-    # date < Time.zone.now
-    date > 1.day.ago
-  end
-
   private
   def code_generator
     "#{name} - #{SecureRandom.hex[0,8]}"

@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     member do
       # post :join
       post :quit
+      get :manager
+      patch :transfer  #group/1234567/manager
     end
     resource :invite_link, only: [ :show ]
   end
