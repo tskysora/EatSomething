@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   belongs_to :store
   belongs_to :group
   belongs_to :user
+  has_one :tray
 
   validates :date, :period, presence: true
 

@@ -20,7 +20,8 @@ class GroupsController < ApplicationController
       current_user.join!(@group)
       redirect_to groups_path, notice: "團體新增成功！"
     else
-      render :new
+      render :new, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
   
@@ -32,7 +33,8 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to groups_path, notice: "團體更新成功！"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_23_141837) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_22_062624) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -138,6 +138,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_141837) do
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
+  create_table "tray_items", force: :cascade do |t|
+    t.bigint "tray_id", null: false
+    t.bigint "meal_id", null: false
+    t.integer "quantity"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meal_id"], name: "index_tray_items_on_meal_id"
+    t.index ["tray_id"], name: "index_tray_items_on_tray_id"
+  end
+
+  create_table "trays", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_trays_on_event_id"
+    t.index ["user_id"], name: "index_trays_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -162,4 +182,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_23_141837) do
   add_foreign_key "memberships", "groups"
   add_foreign_key "memberships", "users"
   add_foreign_key "stores", "users"
+  add_foreign_key "tray_items", "meals"
+  add_foreign_key "tray_items", "trays"
+  add_foreign_key "trays", "events"
+  add_foreign_key "trays", "users"
 end

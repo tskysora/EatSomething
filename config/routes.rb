@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       # post :join
       post :quit
       get :manager
-      patch :transfer  #group/1234567/manager
+      patch :transfer  #groups/1234567/manager
     end
     resource :invite_link, only: [ :show ]
   end
@@ -23,7 +23,12 @@ Rails.application.routes.draw do
     resources :memberships, only: [ :new, :create ]
   end
   
-  resources :events
+  resources :events do
+  end
+  
+  resources :trays do
+  end
+  #trays/1234567/create
 
   # Defines the root path route ("/")
   root "home#index"

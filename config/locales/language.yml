@@ -10,6 +10,7 @@ zh-TW:
       meal: 餐點
       group: 團體
       event: 活動
+      tray: 餐盤
     attributes:
       user:
         nickname: "暱稱"

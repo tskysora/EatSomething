@@ -1,4 +1,4 @@
-import Collapse from 'bootstrap/js/dist/collapse'
+// import Collapse from 'bootstrap/js/dist/collapse'
 import Toast from 'bootstrap/js/dist/toast'
 
 document.addEventListener('turbo:load', () => {

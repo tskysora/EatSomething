@@ -8,18 +8,19 @@
         <%= link_to @event.group.name , group_path(@event.group), class: 'fs-5' %>
       </div>
       <div class="col-5 col-md-12">
-      <% if current_user==@event.user %>
+        <% if current_user==@event.user %>
           <div class="d-flex flex-column mt-4">
             <%= link_to '編輯活動資訊', edit_event_path(@event), class: 'btn btn-sm btn-success mb-2' %>
-              <%= link_to '刪除活動', event_path(@event), class: 'btn btn-sm btn-danger mb-2' , data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？' } %>
+            <%= link_to '刪除活動', event_path(@event), class: 'btn btn-sm btn-danger mb-2' , data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？' } %>
+            <%= link_to 'new tray', new_tray_path(@tray), class: 'btn btn-sm btn-success mb-2' %>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="col-12 col-md-10 mb-2">
     <div class="card">
-      <div class="card-header d-flex">
+      <div class="card-header d-flex justify-content-between">
         <div>
           <span class="fs-4">
             <%= @event.store.name %>
@@ -27,10 +28,90 @@
           </span>
           <span>的菜單</span>
         </div>
+        <div>
+          <button class="btn btn-sm btn-primary text-light" type="button" data-bs-toggle="collapse"
+            data-bs-target=".collapse-meals">
+            看看別人點了什麼
+          </button>
+        </div>
+      </div>
+      <div class="row card-body d-flex justify-content-between align-items-center">
+        <div class="col-12">
+          <div class="">
+            <div class="row py-2 border-bottom item border-2">
+              <div class="col-2"></div>
+              <div class="col-4">品項</div>
+              <div class="col-2">價格</div>
+              <div class="col-4">描述</div>
+            </div>
+            <% @event.store.meals.each do |meal| %>
+              <div class="row py-2 border-bottom item">
+                <div class="col-2">
+                  <%= link_to "加入餐盤", "#", class: 'btn-sm btn-success' %>
+                </div>
+                <div class="col-4">
+                  <%= meal.name %>
+                </div>
+                <div class="col-2">
+                  <%= meal.price %>
+                </div>
+                <div class="col-4">
+                  <%= meal.description %>
+                </div>
+                <div class="col-12 collapse collapse-meals" id="collapseMeals">
+                  <div class="">
+                    Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user
+                    activates the relevant trigger.
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-header d-flex">
+        <div>
+          <span class="fs-4">
+            我的餐盤
+          </span>
+        </div>
       </div>
       <div class="row card-body d-flex justify-content-between align-items-center">
         <div class="col-12 mb-3">
-          
+          <div class="row">
+            <div class="col-5">
+              品項
+            </div>
+            <div class="col-2">
+              數量
+            </div>
+            <div class="col-4">
+              備註
+            </div>
+            <%= form_with model: @tray do |form| %>
+              <div>
+                <%= form.hidden_field :event_id, value: @event.id %>
+              </div>
+              <div data-controller="tray-items">
+                <template data-tray-items-target="templateTray">
+                  <%= form.fields_for :tray_items, TrayItem.new, child_index: 'NEW_RECORD' do |tray| %>
+                    <%= render 'tray_form' , form: tray %>
+                  <% end %>
+                </template>
+                <%= form.fields_for :tray_items do |tray_form| %>
+                  <%= render 'tray_form' , form: tray_form %>
+                <% end %>
+                <div data-tray-items-target="addTrayBtn">
+                  <%= link_to "新增品項", '#', class: 'btn btn-sm btn-success', data: {action: 'tray-items#add_tray_item'} %>
+                </div>
+              </div>
+              <div class="my-3 d-flex justify-content-between">
+                <%= form.submit class: 'btn btn-primary text-light' %>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-5">
+    <select class="form-select">
+      <%= options_for_select(@event.store.meals.map { |m| [m.name, m.id] }) %>
+    </select>
+  </div>
+  <div class="col-2">
+    <%= form.text_field :quantity, class: 'form-control' %>
+  </div>
+  <div class="col-5">
+    <%= form.text_field :note, class: 'form-control' %>
+  </div>
+  <div class="my-3 d-flex justify-content-between">
+    <%= form.submit class: 'btn btn-primary text-light' %>
+  </div>
+</div>

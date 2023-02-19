@@ -18,7 +18,8 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to events_path, notice: '新增活動成功！'
     else
-      render :new
+      render :new, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
 
@@ -30,12 +31,19 @@ class EventsController < ApplicationController
     if @event.update(event_params)
       redirect_to events_path, notice: "活動更新成功！"
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
 
   def show
-    
+    find_tray
+    if @tray
+      
+    else
+      @tray = Tray.new
+      @tray.tray_items.build
+    end
   end
 
   def destroy
@@ -62,8 +70,14 @@ class EventsController < ApplicationController
   def find_event
     @event = Event.friendly.find(params[:id])
   end
+  
+  def find_tray
+    @event = Event.friendly.find(params[:id])
+    @tray = Tray.find_by(event_id: @event.id)
+  end
 
   def event_params
     params.require(:event).permit(:date, :store_id, :period, :group_id)
   end
+
 end

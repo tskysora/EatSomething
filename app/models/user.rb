@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :participated_groups, through: :memberships, source: :group
   has_many :events
+  has_many :trays
   
   validates :nickname, presence: true
 

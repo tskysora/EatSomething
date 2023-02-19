@@ -18,7 +18,8 @@ class StoresController < ApplicationController
     if @store.save
       redirect_to stores_path, notice: '新增店家成功！'
     else
-      render :new
+      render :new, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
   
@@ -27,10 +28,11 @@ class StoresController < ApplicationController
   end
 
   def update
-    if @store.update(store_params)
+    if @store.update!(store_params)
       redirect_to edit_store_path, notice: '資料更新成功！'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
   

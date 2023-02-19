@@ -6,3 +6,14 @@
   </div>
   <%= render 'form', group: @group %>
 </div>
+<% if @group.errors.any? %>
+  <div class="">
+    <ul>
+      <% @group.errors.full_messages.each do |error| %>
+        <li>
+          <%= error %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+<% end %>

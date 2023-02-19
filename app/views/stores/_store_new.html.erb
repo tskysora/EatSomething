@@ -9,6 +9,8 @@
       <div class="col-md-3 col-sm-6 my-3">
         <%= form.label :name, '店名', class: 'form-label' %>
         <%= form.text_field :name, class: 'form-control' %>
+        <!-- <%= err_field(:name, form, :store, autofocus: true) %> -->
+        <!-- <%= err_message(:name, form, :store) %> -->
       </div>
       <div class="col-md-3 col-sm-6 my-3">
         <%= form.label :branch, '分店名稱', class: 'form-label' %>
@@ -17,6 +19,8 @@
       <div class="col-md-6 col-sm-12 my-3">
         <%= form.label :tel, '電話', class: 'form-label' %>
         <%= form.text_field :tel, class: 'form-control' %>
+        <!-- <%= err_field(:tel, form, :store) %> -->
+        <!-- <%= err_message(:tel, form, :store) %> -->
       </div>
       <!-- <div class="col-3 my-3">
         <%= form.label :county, '縣市', class: 'form-label' %>
