@@ -1,12 +1,12 @@
 <div class="row nested-tray-fields my-2" data-new-record="<%= form.object.new_record? %>" >
   <div class="col-5">
-    <%= form.collection_select :meal_id, @event.store.meals, :id, :name, { prompt: '請選擇餐點...'}, { class: 'form-select' } %>
+    <%= form.collection_select :meal_id, @event.store.meals, :id, :name, { prompt: '請選擇餐點...', hide_label: true}, { class: 'form-select', required: true } %>
   </div>
   <div class="col-2">
-    <%= form.number_field :quantity, class: 'form-control' %>
+    <%= form.number_field :quantity, class: 'form-control', placeholder: '數量', required: true, hide_label: true %>
   </div>
   <div class="col-4">
-    <%= form.text_field :note, class: 'form-control' %>
+    <%= form.text_field :note, class: 'form-control', placeholder: '備註', hide_label: true %>
   </div>
   <div class="col-1 align-items-center d-flex">
     <%= link_to '#' , data: {action: 'tray-items#remove_tray' } do %>

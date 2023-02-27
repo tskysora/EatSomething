@@ -77,6 +77,9 @@ GEM
       msgpack (~> 1.2)
     bootstrap-datepicker-rails (1.9.0.1)
       railties (>= 3.0)
+    bootstrap_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     builder (3.2.4)
     capybara (3.37.1)
       addressable
@@ -264,6 +267,7 @@ DEPENDENCIES
   babosa (~> 2.0)
   bootsnap
   bootstrap-datepicker-rails (~> 1.9, >= 1.9.0.1)
+  bootstrap_form (~> 5.1)
   capybara
   cssbundling-rails
   debug

@@ -1,14 +1,10 @@
-<%= form_with model: group  do |form| %>
+<%= bootstrap_form_with model: group  do |form| %>
   <div class="row card-body">
     <div class="col-12">
-      <%= form.label :name, '團體名稱', class: 'form-label' %>
-      <%= form.text_field :name, class: 'form-control', autofocus: true  %>
-      <!-- <%= err_field(:name, form, :group, autofocus: true ) %> -->
-      <!-- <%= err_message(:name, form, :group) %> -->
+      <%= form.text_field :name, class: 'form-control', autofocus: true, label: '團體名稱', required: true  %>
     </div>
     <div class="col-12 mt-3">
-      <%= form.label :description, '描述', class: 'form-label' %>
-      <%= form.text_field :description, class: 'form-control' %>
+      <%= form.text_field :description, class: 'form-control', label: '描述' %>
     </div>
     <div class="my-3 d-flex justify-content-between">
       <%= form.submit class: 'btn btn-primary text-light' %>

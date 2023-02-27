@@ -2,7 +2,11 @@
 document.addEventListener('turbo:load', () => {
   $('.event-store_id').select2({
     language: 'zh-TW',
-    placeholder: '選擇店家...',
+    allowClear: true,
+    placeholder: {
+      id: "0",
+      text: "選擇店家..." //Should be text not placeholder
+    }
 
   });
   $('.group-user_id').select2({

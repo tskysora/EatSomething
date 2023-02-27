@@ -1,4 +1,4 @@
-<%= form_with model: store, data: "turbo: false" do |form| %>
+<%= bootstrap_form_with model: store, data: "turbo: false" do |form| %>
   <div class="card d-none" data-display-target="storeEdit">
   <!-- <div class="card" data-display-target="storeEdit"> -->
     <div class="card-header d-flex">
@@ -10,27 +10,16 @@
       </div>
     </div>
     <div class="row card-body">
-      <div class="col-md-3 col-sm-6 my-3">
-        <%= form.label :name, '店名', class: 'form-label' %>
-        <%= form.text_field :name, class: 'form-control' %>
+      <div class="col-md-3 col-sm-6 mb-2">
+        <%= form.text_field :name, class: 'form-control', label: '店名' %>
       </div>
-      <div class="col-md-3 col-sm-6 my-3">
-        <%= form.label :branch, '分店名稱', class: 'form-label' %>
-        <%= form.text_field :branch, class: 'form-control' %>
+      <div class="col-md-3 col-sm-6 mb-2">
+        <%= form.text_field :branch, class: 'form-control', label: '分店名稱' %>
       </div>
-      <div class="col-md-6 col-sm-12 my-3">
-        <%= form.label :tel, '電話', class: 'form-label' %>
-        <%= form.text_field :tel, class: 'form-control' %>
+      <div class="col-md-6 col-sm-12 mb-2">
+        <%= form.text_field :tel, class: 'form-control', label: '電話' %>
       </div>
-      <!-- <div class="col-3 my-3">
-        <%= form.label :county, '縣市', class: 'form-label' %>
-        <%= form.text_field :county, class: 'form-control' %>
-      </div>
-      <div class="col-3 my-3">
-        <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
-        <%= form.text_field :district, class: 'form-control' %>
-      </div> -->
-      <div class="city-selector col-md-6 col-sm-12 my-3">
+      <div class="city-selector col-md-6 col-sm-12 mb-2">
         <div class="blo me-2">
           <%= form.label :county, '縣市', class: 'form-label' %>
           <select class="county" data-value="<%= store.county %>"></select>
@@ -40,21 +29,17 @@
           <select class="district" data-value="<%= store.district %>"></select>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 my-3">
-        <%= form.label :street_address, '街道名稱', class: 'form-label' %>
-        <%= form.text_field :street_address, class: 'form-control' %>
+      <div class="col-md-6 col-sm-12 mb-2">
+        <%= form.text_field :street_address, class: 'form-control', label: '街道名稱' %>
       </div>
-      <div class="col-12 my-3">
-        <%= form.label :note, '備註', class: 'form-label' %>
-        <%= form.text_area :note, class: 'form-control', rows: 3 %>
+      <div class="col-12 mb-2">
+        <%= form.text_area :note, class: 'form-control', rows: 3, label: '備註' %>
       </div>
-      <div class="col-md-3 col-sm-12 my-3">
-        <%= form.check_box :online, class: 'form-check-input' %>
-        <%= form.label :online, '營業中', class: 'form-check-label' %>
+      <div class="col-md-3 col-sm-12 mb-2">
+        <%= form.check_box :online, class: 'form-check-input' , label: '營業中' %>
       </div>
-      <div class="col-12 my-2">
-        <%= form.label :label, '上傳菜單', class: 'form-label' %>
-        <%= form.file_field :menu, class: 'form-control' %>
+      <div class="col-12 mb-2">
+        <%= form.file_field :menu, class: 'form-control', label: '上傳菜單' %>
       </div>
       
       <!-- <div>
@@ -95,7 +80,7 @@
   </div>
     
     
-  <div class="my-3 d-none" data-display-target="submit">
+  <div class="my-2 d-none" data-display-target="submit">
     <%= form.submit "更新", class: 'btn btn-primary text-light' %>
   </div>
 <% end %>

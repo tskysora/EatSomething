@@ -15,15 +15,17 @@ class TraysController < ApplicationController
     if @tray.save!
       redirect_to events_path, notice: '新增成功！'
     else
-      render 'events/show'
+      render 'events/show', status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
 
   def update
-    if @tray.update(tray_params)
+    if @tray.update!(tray_params)
       redirect_to events_path, notice: "餐盤更新成功！"
     else
-      render 'events/show'
+      render 'events/show', status: :unprocessable_entity, content_type: "text/html"
+      headers["Content-Type"] = "text/html"
     end
   end
 

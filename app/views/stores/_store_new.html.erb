@@ -1,4 +1,4 @@
-<%= form_with model: store, data: "turbo: false" do |form| %>
+<%= bootstrap_form_with model: store, data: "turbo: false" do |form| %>
   <div class="card">
     <div class="card-header d-flex">
       <div>
@@ -6,51 +6,34 @@
       </div>
     </div>
     <div class="row card-body">
-      <div class="col-md-3 col-sm-6 my-3">
-        <%= form.label :name, '店名', class: 'form-label' %>
-        <%= form.text_field :name, class: 'form-control' %>
-        <!-- <%= err_field(:name, form, :store, autofocus: true) %> -->
-        <!-- <%= err_message(:name, form, :store) %> -->
+      <div class="col-md-3 col-sm-6 mb-2">
+        <%= form.text_field :name, class: 'form-control', label: '店名', required: true %>
       </div>
-      <div class="col-md-3 col-sm-6 my-3">
-        <%= form.label :branch, '分店名稱', class: 'form-label' %>
-        <%= form.text_field :branch, class: 'form-control' %>
+      <div class="col-md-3 col-sm-6 mb-2">
+        <%= form.text_field :branch, class: 'form-control', label: '分店名稱' %>
       </div>
-      <div class="col-md-6 col-sm-12 my-3">
-        <%= form.label :tel, '電話', class: 'form-label' %>
-        <%= form.text_field :tel, class: 'form-control' %>
-        <!-- <%= err_field(:tel, form, :store) %> -->
-        <!-- <%= err_message(:tel, form, :store) %> -->
+      <div class="col-md-6 col-sm-12 mb-2">
+        <%= form.text_field :tel, class: 'form-control', label: '電話', required: true %>
       </div>
-      <!-- <div class="col-3 my-3">
-        <%= form.label :county, '縣市', class: 'form-label' %>
-        <%= form.text_field :county, class: 'form-control' %>
-      </div>
-      <div class="col-3 my-3">
-        <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
-        <%= form.text_field :district, class: 'form-control' %>
-      </div> -->
-      <div class="city-selector col-md-6 col-sm-12 my-3">
+      <div class="city-selector col-md-6 col-sm-12 mb-2">
         <div class="blo me-2">
           <%= form.label :county, '縣市', class: 'form-label' %>
-          <select class="county" data-value="<%= store.county %>"></select>
+          <select class="county" data-value="<%= store.county %>" required="true"></select>
         </div>
         <div class="blo">
           <%= form.label :district, '鄉鎮市區', class: 'form-label' %>
-          <select class="district" data-value="<%= store.district %>"></select>
+          <select class="district" data-value="<%= store.district %>" required="true"></select>
         </div>
       </div>
-      <div class="col-md-6 col-sm-12 my-3">
-        <%= form.label :street_address, '街道名稱', class: 'form-label' %>
-        <%= form.text_field :street_address, class: 'form-control' %>
+      <div class="col-md-6 col-sm-12 mb-2">
+        <%= form.text_field :street_address, class: 'form-control', label: '街道名稱' %>
       </div>
-      <div class="col-12 my-3">
-        <%= form.label :note, '備註', class: 'form-label' %>
-        <%= form.text_area :note, class: 'form-control', rows: 3 %>
+      <div class="col-12 mb-2">
+        <%= form.text_area :note, class: 'form-control', rows: 3, label: '備註' %>
       </div>
-      <div class="col-md-3 col-sm-12 my-3">
-        <%= form.check_box :online, class: 'form-check-input' %>
-        <%= form.label :online, '營業中', class: 'form-check-label' %>
+      <div class="col-md-3 col-sm-12">
+        <%= form.check_box :online, class: 'form-check-input', label: '營業中' %>
+        <!-- <%= form.label :online, '營業中', class: 'form-check-label' %> -->
       </div>
       <!-- <div>
         <%= form.label :opening, '營業時間', class: 'form-label' %>
@@ -63,7 +46,7 @@
     </div>
   </div>
     
-  <div class="my-3">
+  <div class="mt-2">
     <%= form.submit class: 'btn btn-primary text-light' %>
   </div>
 <% end %>

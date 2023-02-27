@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   def create
     @event = current_user.events.new(event_params)
     
-    if @event.save
+    if @event.save!
       redirect_to events_path, notice: '新增活動成功！'
     else
       render :new, status: :unprocessable_entity, content_type: "text/html"

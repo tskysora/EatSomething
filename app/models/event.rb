@@ -2,7 +2,7 @@ class Event < ApplicationRecord
   belongs_to :store
   belongs_to :group
   belongs_to :user
-  has_one :tray
+  has_one :tray, dependent: :destroy
 
   validates :date, :period, presence: true
 
@@ -24,6 +24,6 @@ class Event < ApplicationRecord
 
   private
   def code_generator
-    "#{date.strftime('%Y%m%d')} - #{period} - #{SecureRandom.hex[0,10]}"
+    "#{period} - #{SecureRandom.hex[0,20]}"
   end
 end
