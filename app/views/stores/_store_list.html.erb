@@ -35,7 +35,7 @@
           <% end %>
         </ul>
         <div class="card-body d-flex">
-          <%= link_to "查看與編輯", edit_store_path(store) %>
+          <%= link_to "查看與編輯", store_path(store) %>
           <%= link_to "刪除", store_path(store), class: 'ms-auto text-danger', data: { turbo_method: :delete, turbo: true, turbo_confirm: '確認是否刪除？'} %>
         </div>
       </div>

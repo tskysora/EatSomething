@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :stores, except: [:show] do
+  resources :stores do
     member do
       put :sort  #stores/sort
     end

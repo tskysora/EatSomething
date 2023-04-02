@@ -1,4 +1,4 @@
-<div class="card mb-3" data-display-target="storeCard">
+<div class="card mb-3">
   <div class="card-header d-flex">
     <div class="">
       <span class="fs-4">
@@ -11,9 +11,9 @@
         <% end %>
       </span> 
     </div>
-    <div class="ms-auto">
-      <%= link_to "編輯", '#' ,class: 'btn btn-primary text-light', data: {action: 'display#show_store_edit'} %>
-    </div>
+    <!-- <div class="ms-auto">
+      <%= link_to "編輯", edit_store_path(store), class: 'btn btn-primary text-light' %>
+    </div> -->
   </div>
   <div class="card-body">
     <p class="card-text">

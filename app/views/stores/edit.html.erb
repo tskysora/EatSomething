@@ -1,6 +1,4 @@
-<div data-controller="display">
-  <%= render 'store_show_card', store: @store %>
-  <%= render 'meal_show_card', store: @store %>
+<div>
   <%= render 'store_form', store: @store %>
   
   <% if @store.menu.attached? %>

@@ -1,6 +1,6 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_store, only: [:edit, :update, :destroy, :sort]
+  before_action :find_store, only: [:show, :edit, :update, :destroy, :sort]
 
   def index
     # @stores = current_user.stores.includes(:meals).order(created_at: :desc)
@@ -27,6 +27,10 @@ class StoresController < ApplicationController
     
   end
 
+  def show
+    
+  end
+
   def update
     if @store.update!(store_params)
       redirect_to edit_store_path, notice: '資料更新成功！'
@@ -50,7 +54,7 @@ class StoresController < ApplicationController
   private
   
   def find_store
-    @store = current_user.stores.friendly.find(params[:id])  
+    @store = current_user.stores.friendly.find(params[:id])
   end
   
   def find_meal

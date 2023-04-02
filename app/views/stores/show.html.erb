@@ -1,1 +1,25 @@
 <%= render 'store_show_card', store: @store %>
+<%= render 'meal_show_card' , store: @store %>
+<div class="d-flex justify-content-center mb-3">
+  <%= link_to "編輯店家及餐點" , edit_store_path(@store), class: 'btn btn-primary text-light' %>
+</div>
+
+<% if @store.menu.attached? %>
+  <div class="card mb-3" data-display-target="mealCard">
+    <div class="card-header d-flex">
+      <div>
+        <span class="fs-4">
+          <%= @store.name %>
+        </span>
+        <span>的菜單圖片</span>
+      </div>
+      <div class="ms-auto">
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="d-flex justify-content-center">
+        <%= image_tag @store.menu.variant(resize: '800x800' ), class: 'img-fluid' if @store.menu.attached? %>
+      </div>
+    </div>
+  </div>
+<% end %>
