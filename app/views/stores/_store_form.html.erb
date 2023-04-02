@@ -1,12 +1,9 @@
 <%= bootstrap_form_with model: store, data: "turbo: false" do |form| %>
-  <div class="card" data-display-target="storeEdit">
+  <div class="card">
     <div class="card-header d-flex">
       <div id="">
         <span class="fs-3">編輯店家</span>
       </div>
-      <!-- <div class="ms-auto">
-        <%= link_to "取消編輯" , store_path(store), class: 'btn btn-primary text-light' %>
-      </div> -->
     </div>
     <div class="row card-body">
       <div class="col-md-3 col-sm-6 mb-2">
@@ -52,14 +49,11 @@
     </div>
   </div>
   
-  <div class="card mt-4" data-display-target="mealEdit">
+  <div class="card mt-4">
     <div class="card-header d-flex">
       <div id="">
         <span class="fs-3">編輯餐點</span>
       </div>
-      <!-- <div class="ms-auto">
-        <%= link_to "取消編輯" , store_path(store), class: 'btn btn-primary text-light' %>
-      </div> -->
     </div>
     <div class="card-body" data-controller="meal-fields">
 
@@ -79,7 +73,7 @@
   </div>
     
     
-  <div class="my-2 d-flex justify-content-around" data-display-target="submit">
+  <div class="my-2 d-flex justify-content-around">
     <%= form.submit "更新", class: 'btn btn-primary text-light' %>
     <%= link_to "取消編輯" , store_path(store), class: 'btn btn-primary text-light' %>
   </div>
